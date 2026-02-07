@@ -119,16 +119,17 @@
       const res = await fetch('./data/daily.json');
       const data = await res.json();
       const rows = data.rows || [];
-      const labels = rows.map(r => r.date);
+      const chartRows = rows.slice().reverse();
+      const labels = chartRows.map(r => r.date);
 
       const tokensChart = new Chart(document.getElementById('tokensChart'), {
         type: 'line',
         data: {
           labels,
           datasets: [
-            { label: 'Total Tokens', data: rows.map(r => r.totalTokens), borderColor: '#4e79a7', tension: 0.2 },
-            { label: 'Input Tokens', data: rows.map(r => r.inputTokens), borderColor: '#59a14f', tension: 0.2 },
-            { label: 'Output Tokens', data: rows.map(r => r.outputTokens), borderColor: '#f28e2b', tension: 0.2 },
+            { label: 'Total Tokens', data: chartRows.map(r => r.totalTokens), borderColor: '#4e79a7', tension: 0.2 },
+            { label: 'Input Tokens', data: chartRows.map(r => r.inputTokens), borderColor: '#59a14f', tension: 0.2 },
+            { label: 'Output Tokens', data: chartRows.map(r => r.outputTokens), borderColor: '#f28e2b', tension: 0.2 },
           ]
         },
         options: { responsive: true, plugins: { title: { display: true, text: '每日 Token 用量' } } }
@@ -139,8 +140,8 @@
         data: {
           labels,
           datasets: [
-            { label: 'User Msg', data: rows.map(r => r.userMessages), backgroundColor: '#4e79a7' },
-            { label: 'Assistant Msg', data: rows.map(r => r.assistantMessages), backgroundColor: '#f28e2b' },
+            { label: 'User Msg', data: chartRows.map(r => r.userMessages), backgroundColor: '#4e79a7' },
+            { label: 'Assistant Msg', data: chartRows.map(r => r.assistantMessages), backgroundColor: '#f28e2b' },
           ]
         },
         options: { responsive: true, plugins: { title: { display: true, text: '每日訊息數' } }, scales: { x: { stacked: true }, y: { stacked: true } } }
@@ -151,7 +152,7 @@
         data: {
           labels,
           datasets: [
-            { label: 'Tool Calls', data: rows.map(r => r.toolCalls), backgroundColor: '#76b7b2' }
+            { label: 'Tool Calls', data: chartRows.map(r => r.toolCalls), backgroundColor: '#76b7b2' }
           ]
         },
         options: { responsive: true, plugins: { title: { display: true, text: '每日工具呼叫數' } } }
