@@ -96,7 +96,8 @@ if (fs.existsSync(TASKS_FILE)) {
 }
 
 const rows = Object.values(stats)
-  .sort((a, b) => a.date.localeCompare(b.date))
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .slice(0, 7)
   .map((r) => {
     const categories = {
       "讀取檔案": ["read"],
