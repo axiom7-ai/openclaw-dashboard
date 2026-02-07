@@ -76,7 +76,15 @@
         <thead>
           <tr>
             <th>日期</th>
-            <th>摘要</th>
+            <th>讀取檔案</th>
+            <th>修改檔案</th>
+            <th>執行指令</th>
+            <th>查詢網頁</th>
+            <th>排程/提醒</th>
+            <th>發送訊息</th>
+            <th>代理管理</th>
+            <th>系統/設定</th>
+            <th>裝置/畫布</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -151,8 +159,20 @@
 
       const summaryBody = document.querySelector('#summaryTable tbody');
       for (const r of rows) {
+        const c = r.summaryCounts || {};
         const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${r.date}</td><td style="text-align:left;">${r.summary || ''}</td>`;
+        tr.innerHTML = `
+          <td>${r.date}</td>
+          <td>${c['讀取檔案'] || 0}</td>
+          <td>${c['修改檔案'] || 0}</td>
+          <td>${c['執行指令'] || 0}</td>
+          <td>${c['查詢網頁'] || 0}</td>
+          <td>${c['排程/提醒'] || 0}</td>
+          <td>${c['發送訊息'] || 0}</td>
+          <td>${c['代理管理'] || 0}</td>
+          <td>${c['系統/設定'] || 0}</td>
+          <td>${c['裝置/畫布'] || 0}</td>
+        `;
         summaryBody.appendChild(tr);
       }
 

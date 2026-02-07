@@ -131,6 +131,7 @@ const rows = Object.values(stats)
     return {
       ...r,
       toolUsage: r.toolUsage,
+      summaryCounts: catCounts,
       tasks,
       summary: summaryParts.join(" · "),
     };
