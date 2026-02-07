@@ -53,10 +53,12 @@ for (const file of files) {
       userMessages: 0,
       assistantMessages: 0,
       toolCalls: 0,
+      toolUsage: {},
       inputTokens: 0,
       outputTokens: 0,
       totalTokens: 0,
       costUsd: 0,
+      summary: "",
     });
 
     if (msg.role === "user") day.userMessages += 1;
@@ -65,7 +67,11 @@ for (const file of files) {
     // tool calls
     const content = Array.isArray(msg.content) ? msg.content : [];
     for (const part of content) {
-      if (part?.type === "toolCall") day.toolCalls += 1;
+      if (part?.type === "toolCall") {
+        day.toolCalls += 1;
+        const name = part?.name || "unknown";
+        day.toolUsage[name] = (day.toolUsage[name] || 0) + 1;
+      }
     }
 
     const usage = msg.usage || rec.usage;
@@ -79,7 +85,26 @@ for (const file of files) {
   });
 }
 
-const rows = Object.values(stats).sort((a, b) => a.date.localeCompare(b.date));
+const rows = Object.values(stats)
+  .sort((a, b) => a.date.localeCompare(b.date))
+  .map((r) => {
+    const toolTop = Object.entries(r.toolUsage)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([name, count]) => `${name}×${count}`)
+      .join(", ");
+
+    const summaryParts = [];
+    summaryParts.push(`User ${r.userMessages} / Assistant ${r.assistantMessages}`);
+    if (r.toolCalls) summaryParts.push(`Tool calls ${r.toolCalls}${toolTop ? ` (${toolTop})` : ""}`);
+    if (r.totalTokens) summaryParts.push(`Tokens ${r.totalTokens}`);
+
+    return {
+      ...r,
+      toolUsage: r.toolUsage,
+      summary: summaryParts.join(" · "),
+    };
+  });
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(OUT_FILE, JSON.stringify({ timezone: TZ, generatedAt: new Date().toISOString(), rows }, null, 2));
