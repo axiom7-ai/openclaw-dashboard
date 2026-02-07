@@ -45,7 +45,6 @@
         <th>Output Tokens</th>
         <th>Total Tokens</th>
         <th>Cost (USD)</th>
-        <th>摘要</th>
       </tr>
     </thead>
     <tbody></tbody>
@@ -114,7 +113,6 @@
           <td>${r.outputTokens}</td>
           <td>${r.totalTokens}</td>
           <td>${(r.costUsd || 0).toFixed(4)}</td>
-          <td style="text-align:left">${r.summary || ''}</td>
         `;
         tbody.appendChild(tr);
       }
