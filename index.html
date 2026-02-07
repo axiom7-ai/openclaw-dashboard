@@ -6,16 +6,46 @@
   <title>OpenClaw 日常活動與 Token Dashboard</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <style>
-    :root { color-scheme: light dark; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 24px; line-height: 1.5; }
-    h1 { margin-bottom: 0.2rem; }
-    .sub { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f1a;
+      --panel: #111827;
+      --panel-2: #0f172a;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #22d3ee;
+      --accent-2: #60a5fa;
+      --border: #1f2937;
+      --glow: 0 0 18px rgba(34, 211, 238, 0.25);
+    }
+    body {
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 24px;
+      line-height: 1.6;
+      background: radial-gradient(1200px 700px at 10% -10%, #0ea5e9 0%, rgba(14,165,233,0) 60%),
+                  radial-gradient(900px 600px at 90% -20%, #22d3ee 0%, rgba(34,211,238,0) 55%),
+                  var(--bg);
+      color: var(--text);
+    }
+    h1 { margin-bottom: 0.2rem; letter-spacing: 0.3px; }
+    h2, h3 { letter-spacing: 0.2px; }
+    .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
     .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-    .card { border: 1px solid #ccc; border-radius: 12px; padding: 16px; }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(17,24,39,0.92), rgba(15,23,42,0.92));
+      box-shadow: var(--glow);
+      backdrop-filter: blur(6px);
+    }
     canvas { width: 100%; height: 260px; }
     table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    th, td { border-bottom: 1px solid #ddd; padding: 6px 8px; text-align: right; }
+    th, td { border-bottom: 1px solid var(--border); padding: 8px 10px; text-align: right; }
+    th { color: var(--muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.08em; }
     th:first-child, td:first-child { text-align: left; }
+    a { color: var(--accent); }
+    details.card summary { color: var(--text); }
   </style>
 </head>
 <body>
