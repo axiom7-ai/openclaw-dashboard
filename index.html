@@ -28,6 +28,11 @@
     <div class="card"><canvas id="toolChart"></canvas></div>
   </div>
 
+  <h2>每日摘要</h2>
+  <div class="card">
+    <ul id="summary" style="margin:0; padding-left:1.2rem;"></ul>
+  </div>
+
   <h2>每日明細</h2>
   <table id="table">
     <thead>
@@ -89,6 +94,13 @@
         },
         options: { responsive: true, plugins: { title: { display: true, text: '每日工具呼叫數' } } }
       });
+
+      const summaryEl = document.getElementById('summary');
+      for (const r of rows) {
+        const li = document.createElement('li');
+        li.textContent = `${r.date} — ${r.summary || ''}`;
+        summaryEl.appendChild(li);
+      }
 
       const tbody = document.querySelector('#table tbody');
       for (const r of rows) {
