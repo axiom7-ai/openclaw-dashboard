@@ -88,16 +88,32 @@ for (const file of files) {
 const rows = Object.values(stats)
   .sort((a, b) => a.date.localeCompare(b.date))
   .map((r) => {
-    const toolTop = Object.entries(r.toolUsage)
+    const categories = {
+      "讀取檔案": ["read"],
+      "修改檔案": ["edit", "write"],
+      "執行指令": ["exec", "process"],
+      "查詢網頁": ["web_search", "web_fetch", "browser"],
+      "排程/提醒": ["cron"],
+      "發送訊息": ["message"],
+      "代理管理": ["sessions_spawn", "sessions_list", "sessions_history", "sessions_send"],
+      "系統/設定": ["gateway", "session_status"],
+      "裝置/畫布": ["nodes", "canvas"],
+    };
+
+    const catCounts = {};
+    for (const [cat, tools] of Object.entries(categories)) {
+      for (const t of tools) {
+        if (r.toolUsage[t]) catCounts[cat] = (catCounts[cat] || 0) + r.toolUsage[t];
+      }
+    }
+
+    const actionSummary = Object.entries(catCounts)
       .sort((a, b) => b[1] - a[1])
-      .slice(0, 3)
       .map(([name, count]) => `${name}×${count}`)
-      .join(", ");
+      .join("、");
 
     const summaryParts = [];
-    summaryParts.push(`User ${r.userMessages} / Assistant ${r.assistantMessages}`);
-    if (r.toolCalls) summaryParts.push(`Tool calls ${r.toolCalls}${toolTop ? ` (${toolTop})` : ""}`);
-    if (r.totalTokens) summaryParts.push(`Tokens ${r.totalTokens}`);
+    if (actionSummary) summaryParts.push(actionSummary);
 
     return {
       ...r,

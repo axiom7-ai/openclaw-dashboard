@@ -1,6 +1,6 @@
 {
   "timezone": "Asia/Shanghai",
-  "generatedAt": "2026-02-07T15:18:57.502Z",
+  "generatedAt": "2026-02-07T15:54:16.805Z",
   "rows": [
     {
       "date": "2026-02-02",
@@ -23,7 +23,7 @@
       "outputTokens": 53325,
       "totalTokens": 12618384,
       "costUsd": 17.007190000000005,
-      "summary": "User 46 / Assistant 187 · Tool calls 160 (exec×88, read×29, cron×17) · Tokens 12618384"
+      "summary": "執行指令×93、讀取檔案×29、排程/提醒×17、修改檔案×14、系統/設定×4、發送訊息×2、代理管理×1"
     },
     {
       "date": "2026-02-03",
@@ -42,7 +42,7 @@
       "outputTokens": 12802,
       "totalTokens": 2391620,
       "costUsd": 5.9605755,
-      "summary": "User 31 / Assistant 69 · Tool calls 44 (read×23, exec×13, web_fetch×3) · Tokens 2391620"
+      "summary": "讀取檔案×23、執行指令×13、查詢網頁×5、修改檔案×2"
     },
     {
       "date": "2026-02-04",
@@ -62,7 +62,7 @@
       "outputTokens": 16654,
       "totalTokens": 5228717,
       "costUsd": 16.2929535,
-      "summary": "User 63 / Assistant 115 · Tool calls 56 (exec×32, web_fetch×8, read×5) · Tokens 5228717"
+      "summary": "執行指令×32、查詢網頁×11、讀取檔案×5、修改檔案×5、排程/提醒×3"
     },
     {
       "date": "2026-02-05",
@@ -84,7 +84,7 @@
       "outputTokens": 41666,
       "totalTokens": 13414154,
       "costUsd": 9.150952449999998,
-      "summary": "User 81 / Assistant 268 · Tool calls 195 (exec×69, edit×53, process×31) · Tokens 13414154"
+      "summary": "執行指令×100、修改檔案×55、讀取檔案×29、查詢網頁×5、系統/設定×5"
     },
     {
       "date": "2026-02-06",
@@ -107,29 +107,29 @@
       "outputTokens": 42583,
       "totalTokens": 15464094,
       "costUsd": 9.0707379,
-      "summary": "User 103 / Assistant 286 · Tool calls 194 (read×54, exec×46, process×29) · Tokens 15464094"
+      "summary": "執行指令×75、讀取檔案×54、查詢網頁×35、修改檔案×14、系統/設定×13、排程/提醒×2"
     },
     {
       "date": "2026-02-07",
-      "userMessages": 68,
-      "assistantMessages": 195,
-      "toolCalls": 139,
+      "userMessages": 73,
+      "assistantMessages": 216,
+      "toolCalls": 155,
       "toolUsage": {
         "read": 47,
-        "exec": 65,
+        "exec": 75,
         "gateway": 3,
         "process": 9,
         "memory_search": 1,
         "web_search": 1,
-        "write": 4,
-        "edit": 7,
+        "write": 6,
+        "edit": 11,
         "cron": 2
       },
-      "inputTokens": 2663537,
-      "outputTokens": 21166,
-      "totalTokens": 10757023,
-      "costUsd": 6.3701697500000005,
-      "summary": "User 68 / Assistant 195 · Tool calls 139 (exec×65, read×47, process×9) · Tokens 10757023"
+      "inputTokens": 2895904,
+      "outputTokens": 24847,
+      "totalTokens": 11998255,
+      "costUsd": 7.004253200000002,
+      "summary": "執行指令×84、讀取檔案×47、修改檔案×17、系統/設定×3、排程/提醒×2、查詢網頁×1"
     }
   ]
 }
