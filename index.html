@@ -26,6 +26,11 @@
     <div class="card"><canvas id="tokensChart"></canvas></div>
     <div class="card"><canvas id="messagesChart"></canvas></div>
     <div class="card"><canvas id="toolChart"></canvas></div>
+    <div class="card">
+      <h3 style="margin:0 0 0.5rem;">Task 區塊</h3>
+      <div class="sub" style="margin:0 0 0.75rem;">每日完成事項（手動記錄於 data/tasks.json）</div>
+      <ul id="tasks" style="margin:0; padding-left:1.2rem;"></ul>
+    </div>
   </div>
 
   <details class="card" open>
@@ -99,6 +104,20 @@
         const li = document.createElement('li');
         li.textContent = `${r.date} — ${r.summary || ''}`;
         summaryEl.appendChild(li);
+      }
+
+      const tasksEl = document.getElementById('tasks');
+      const taskRows = rows.filter(r => Array.isArray(r.tasks) && r.tasks.length > 0);
+      if (taskRows.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = '（尚未記錄）';
+        tasksEl.appendChild(li);
+      } else {
+        for (const r of taskRows) {
+          const li = document.createElement('li');
+          li.textContent = `${r.date} — ${r.tasks.join('、')}`;
+          tasksEl.appendChild(li);
+        }
       }
 
       const tbody = document.querySelector('#table tbody');

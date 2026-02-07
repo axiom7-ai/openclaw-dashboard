@@ -5,6 +5,7 @@ import readline from "readline";
 const SESSIONS_DIR = process.env.SESSIONS_DIR || "/Users/macos-utm/.openclaw/agents/main/sessions";
 const OUT_DIR = path.resolve("./data");
 const OUT_FILE = path.join(OUT_DIR, "daily.json");
+const TASKS_FILE = path.join(OUT_DIR, "tasks.json");
 const TZ = "Asia/Shanghai";
 
 const dateFmt = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" });
@@ -85,6 +86,15 @@ for (const file of files) {
   });
 }
 
+let tasksByDate = {};
+if (fs.existsSync(TASKS_FILE)) {
+  try {
+    tasksByDate = JSON.parse(fs.readFileSync(TASKS_FILE, "utf8")) || {};
+  } catch {
+    tasksByDate = {};
+  }
+}
+
 const rows = Object.values(stats)
   .sort((a, b) => a.date.localeCompare(b.date))
   .map((r) => {
@@ -115,9 +125,12 @@ const rows = Object.values(stats)
     const summaryParts = [];
     if (actionSummary) summaryParts.push(actionSummary);
 
+    const tasks = Array.isArray(tasksByDate[r.date]) ? tasksByDate[r.date] : [];
+
     return {
       ...r,
       toolUsage: r.toolUsage,
+      tasks,
       summary: summaryParts.join(" · "),
     };
   });

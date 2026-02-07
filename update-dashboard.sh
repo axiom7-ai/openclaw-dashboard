@@ -6,7 +6,7 @@ cd "$REPO_DIR"
 
 node build-data.mjs
 
-git add data/daily.json index.html
+git add data/daily.json data/tasks.json index.html
 if git diff --cached --quiet; then
   exit 0
 fi
