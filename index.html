@@ -66,7 +66,15 @@
 
   <details class="card" open>
     <summary style="cursor:pointer; font-weight:600;">每日摘要</summary>
-    <ul id="summary" style="margin:0.75rem 0 0; padding-left:1.2rem;"></ul>
+    <table id="summaryTable" style="margin-top:0.75rem;">
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>摘要</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </details>
 
   <details class="card" open>
@@ -132,11 +140,11 @@
         options: { responsive: true, plugins: { title: { display: true, text: '每日工具呼叫數' } } }
       });
 
-      const summaryEl = document.getElementById('summary');
+      const summaryBody = document.querySelector('#summaryTable tbody');
       for (const r of rows) {
-        const li = document.createElement('li');
-        li.textContent = `${r.date} — ${r.summary || ''}`;
-        summaryEl.appendChild(li);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${r.date}</td><td style="text-align:left;">${r.summary || ''}</td>`;
+        summaryBody.appendChild(tr);
       }
 
       const tasksEl = document.getElementById('tasks');
