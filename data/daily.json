@@ -1,30 +1,55 @@
 {
   "timezone": "Asia/Shanghai",
-  "generatedAt": "2026-02-07T18:21:35.373Z",
+  "generatedAt": "2026-02-08T16:02:00.630Z",
   "rows": [
     {
-      "date": "2026-02-08",
-      "userMessages": 28,
-      "assistantMessages": 98,
-      "toolCalls": 76,
+      "date": "2026-02-09",
+      "userMessages": 3,
+      "assistantMessages": 21,
+      "toolCalls": 23,
       "toolUsage": {
-        "read": 16,
-        "edit": 20,
-        "exec": 35,
+        "read": 9,
+        "exec": 9,
+        "process": 3,
+        "sessions_list": 1,
+        "write": 1
+      },
+      "inputTokens": 85238,
+      "outputTokens": 3619,
+      "totalTokens": 611737,
+      "costUsd": 0.29133649999999994,
+      "summary": "執行指令×12、讀取檔案×9、修改檔案×1、代理管理×1",
+      "summaryCounts": {
+        "讀取檔案": 9,
+        "修改檔案": 1,
+        "執行指令": 12,
+        "代理管理": 1
+      },
+      "tasks": []
+    },
+    {
+      "date": "2026-02-08",
+      "userMessages": 83,
+      "assistantMessages": 214,
+      "toolCalls": 136,
+      "toolUsage": {
+        "read": 58,
+        "edit": 25,
+        "exec": 48,
         "memory_search": 1,
         "sessions_list": 1,
         "write": 2,
         "cron": 1
       },
-      "inputTokens": 561057,
-      "outputTokens": 12648,
-      "totalTokens": 2469001,
-      "costUsd": 1.4905985500000003,
-      "summary": "執行指令×35、修改檔案×22、讀取檔案×16、排程/提醒×1、代理管理×1",
+      "inputTokens": 1035281,
+      "outputTokens": 19265,
+      "totalTokens": 4488914,
+      "costUsd": 2.6824661500000007,
+      "summary": "讀取檔案×58、執行指令×48、修改檔案×27、排程/提醒×1、代理管理×1",
       "summaryCounts": {
-        "讀取檔案": 16,
-        "修改檔案": 22,
-        "執行指令": 35,
+        "讀取檔案": 58,
+        "修改檔案": 27,
+        "執行指令": 48,
         "排程/提醒": 1,
         "代理管理": 1
       },
@@ -174,39 +199,6 @@
         "修改檔案": 2,
         "執行指令": 13,
         "查詢網頁": 5
-      },
-      "tasks": []
-    },
-    {
-      "date": "2026-02-02",
-      "userMessages": 46,
-      "assistantMessages": 187,
-      "toolCalls": 160,
-      "toolUsage": {
-        "session_status": 3,
-        "read": 29,
-        "exec": 88,
-        "edit": 6,
-        "message": 2,
-        "sessions_list": 1,
-        "process": 5,
-        "write": 8,
-        "cron": 17,
-        "gateway": 1
-      },
-      "inputTokens": 3203069,
-      "outputTokens": 53325,
-      "totalTokens": 12618384,
-      "costUsd": 17.007190000000005,
-      "summary": "執行指令×93、讀取檔案×29、排程/提醒×17、修改檔案×14、系統/設定×4、發送訊息×2、代理管理×1",
-      "summaryCounts": {
-        "讀取檔案": 29,
-        "修改檔案": 14,
-        "執行指令": 93,
-        "排程/提醒": 17,
-        "發送訊息": 2,
-        "代理管理": 1,
-        "系統/設定": 4
       },
       "tasks": []
     }
