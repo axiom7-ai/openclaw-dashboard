@@ -31,6 +31,8 @@
     h2, h3 { letter-spacing: 0.2px; }
     .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
     .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .grid-charts { margin-bottom: 24px; }
+    .grid-notes { align-items: start; }
     .card {
       border: 1px solid var(--border);
       border-radius: 14px;
@@ -39,9 +41,18 @@
       box-shadow: var(--glow);
       backdrop-filter: blur(6px);
     }
-    details.card { margin-top: 24px; }
+    details.card { margin-top: 0; }
     canvas { width: 100%; height: 260px; }
     .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .list {
+      margin: 0;
+      padding-left: 1.2rem;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+    .list-compact {
+      max-height: 260px;
+    }
     table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 720px; }
     th, td { border-bottom: 1px solid var(--border); padding: 8px 10px; text-align: right; white-space: nowrap; }
     th { color: var(--muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.08em; }
@@ -58,22 +69,25 @@
   <h1>OpenClaw 日常活動與 Token Dashboard</h1>
   <div class="sub">資料來源：OpenClaw session JSONL（Asia/Shanghai）。</div>
 
-  <div class="grid">
+  <div class="grid grid-charts">
     <div class="card"><canvas id="tokensChart"></canvas></div>
     <div class="card"><canvas id="messagesChart"></canvas></div>
     <div class="card"><canvas id="toolChart"></canvas></div>
+  </div>
+
+  <div class="grid grid-notes">
     <div class="card">
       <h3 style="margin:0 0 0.5rem;">每日任務</h3>
-      <ul id="tasks" style="margin:0; padding-left:1.2rem;"></ul>
+      <ul id="tasks" class="list"></ul>
+    </div>
+    <div class="card">
+      <h3 style="margin:0 0 0.5rem;">今日驚喜</h3>
+      <ul id="todaySurprise" class="list"></ul>
     </div>
     <details class="card">
       <summary style="cursor:pointer; font-weight:600;">最近動作記錄</summary>
-      <ul id="recentActions" style="margin:0.6rem 0 0; padding-left:1.2rem;"></ul>
+      <ul id="recentActions" class="list list-compact"></ul>
     </details>
-    <div class="card">
-      <h3 style="margin:0 0 0.5rem;">今日驚喜</h3>
-      <ul id="todaySurprise" style="margin:0; padding-left:1.2rem;"></ul>
-    </div>
   </div>
 
   <details class="card">
@@ -198,20 +212,6 @@
         }
       }
 
-      const recentEl = document.getElementById('recentActions');
-      const recentActions = Array.isArray(data.recentActions) ? data.recentActions : [];
-      if (recentActions.length === 0) {
-        const li = document.createElement('li');
-        li.textContent = '（尚未記錄）';
-        recentEl.appendChild(li);
-      } else {
-        for (const a of recentActions) {
-          const li = document.createElement('li');
-          li.textContent = `${a.time} — ${a.summary || a.tool}`;
-          recentEl.appendChild(li);
-        }
-      }
-
       const surpriseEl = document.getElementById('todaySurprise');
       const todaySurprise = Array.isArray(data.todaySurprise) ? data.todaySurprise : [];
       if (todaySurprise.length === 0) {
@@ -223,6 +223,20 @@
           const li = document.createElement('li');
           li.textContent = s;
           surpriseEl.appendChild(li);
+        }
+      }
+
+      const recentEl = document.getElementById('recentActions');
+      const recentActions = Array.isArray(data.recentActions) ? data.recentActions : [];
+      if (recentActions.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = '（尚未記錄）';
+        recentEl.appendChild(li);
+      } else {
+        for (const a of recentActions) {
+          const li = document.createElement('li');
+          li.textContent = `${a.time} — ${a.summary || a.tool}`;
+          recentEl.appendChild(li);
         }
       }
 
