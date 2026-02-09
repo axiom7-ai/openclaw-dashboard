@@ -66,6 +66,14 @@
       <h3 style="margin:0 0 0.5rem;">每日任務</h3>
       <ul id="tasks" style="margin:0; padding-left:1.2rem;"></ul>
     </div>
+    <div class="card">
+      <h3 style="margin:0 0 0.5rem;">最近動作記錄</h3>
+      <ul id="recentActions" style="margin:0; padding-left:1.2rem;"></ul>
+    </div>
+    <div class="card">
+      <h3 style="margin:0 0 0.5rem;">今日驚喜</h3>
+      <ul id="todaySurprise" style="margin:0; padding-left:1.2rem;"></ul>
+    </div>
   </div>
 
   <details class="card">
@@ -187,6 +195,34 @@
           const li = document.createElement('li');
           li.textContent = `${r.date} — ${r.tasks.join('、')}`;
           tasksEl.appendChild(li);
+        }
+      }
+
+      const recentEl = document.getElementById('recentActions');
+      const recentActions = Array.isArray(data.recentActions) ? data.recentActions : [];
+      if (recentActions.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = '（尚未記錄）';
+        recentEl.appendChild(li);
+      } else {
+        for (const a of recentActions) {
+          const li = document.createElement('li');
+          li.textContent = `${a.time} — ${a.summary || a.tool}`;
+          recentEl.appendChild(li);
+        }
+      }
+
+      const surpriseEl = document.getElementById('todaySurprise');
+      const todaySurprise = Array.isArray(data.todaySurprise) ? data.todaySurprise : [];
+      if (todaySurprise.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = '（尚未安排）';
+        surpriseEl.appendChild(li);
+      } else {
+        for (const s of todaySurprise) {
+          const li = document.createElement('li');
+          li.textContent = s;
+          surpriseEl.appendChild(li);
         }
       }
 

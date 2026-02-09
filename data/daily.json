@@ -1,28 +1,32 @@
 {
   "timezone": "Asia/Shanghai",
-  "generatedAt": "2026-02-08T16:02:00.630Z",
+  "generatedAt": "2026-02-09T02:27:25.058Z",
   "rows": [
     {
       "date": "2026-02-09",
-      "userMessages": 3,
-      "assistantMessages": 21,
-      "toolCalls": 23,
+      "userMessages": 30,
+      "assistantMessages": 89,
+      "toolCalls": 68,
       "toolUsage": {
-        "read": 9,
-        "exec": 9,
+        "read": 27,
+        "cron": 1,
+        "memory_search": 1,
+        "write": 4,
+        "exec": 22,
+        "edit": 9,
         "process": 3,
-        "sessions_list": 1,
-        "write": 1
+        "sessions_list": 1
       },
-      "inputTokens": 85238,
-      "outputTokens": 3619,
-      "totalTokens": 611737,
-      "costUsd": 0.29133649999999994,
-      "summary": "執行指令×12、讀取檔案×9、修改檔案×1、代理管理×1",
+      "inputTokens": 269137,
+      "outputTokens": 11192,
+      "totalTokens": 1913353,
+      "costUsd": 0.9134569500000003,
+      "summary": "讀取檔案×27、執行指令×25、修改檔案×13、排程/提醒×1、代理管理×1",
       "summaryCounts": {
-        "讀取檔案": 9,
-        "修改檔案": 1,
-        "執行指令": 12,
+        "讀取檔案": 27,
+        "修改檔案": 13,
+        "執行指令": 25,
+        "排程/提醒": 1,
         "代理管理": 1
       },
       "tasks": []
@@ -202,5 +206,108 @@
       },
       "tasks": []
     }
-  ]
+  ],
+  "recentActions": [
+    {
+      "time": "2026/02/09 10:27",
+      "tool": "exec",
+      "summary": "exec: node build-data.mjs"
+    },
+    {
+      "time": "2026/02/09 10:27",
+      "tool": "write",
+      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/data/surprise.json"
+    },
+    {
+      "time": "2026/02/09 10:27",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/index.html"
+    },
+    {
+      "time": "2026/02/09 10:26",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/index.html"
+    },
+    {
+      "time": "2026/02/09 10:26",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+    },
+    {
+      "time": "2026/02/09 10:26",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+    },
+    {
+      "time": "2026/02/09 10:26",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+    },
+    {
+      "time": "2026/02/09 10:26",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+    },
+    {
+      "time": "2026/02/09 10:26",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+    },
+    {
+      "time": "2026/02/09 10:26",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+    },
+    {
+      "time": "2026/02/09 10:26",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+    },
+    {
+      "time": "2026/02/09 10:26",
+      "tool": "exec",
+      "summary": "exec: tail -n 5 /Users/macos-utm/.openclaw/agents/main/sessions/0208f527-124e-45dd-96…"
+    },
+    {
+      "time": "2026/02/09 10:25",
+      "tool": "exec",
+      "summary": "exec: ls /Users/macos-utm/.openclaw/agents/main/sessions | head -n 3"
+    },
+    {
+      "time": "2026/02/09 10:25",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+    },
+    {
+      "time": "2026/02/09 10:25",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/index.html"
+    },
+    {
+      "time": "2026/02/09 10:25",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/index.html"
+    },
+    {
+      "time": "2026/02/09 10:25",
+      "tool": "exec",
+      "summary": "exec: ls data"
+    },
+    {
+      "time": "2026/02/09 10:25",
+      "tool": "exec",
+      "summary": "exec: ls"
+    },
+    {
+      "time": "2026/02/09 10:25",
+      "tool": "exec",
+      "summary": "exec: git rev-parse --abbrev-ref HEAD"
+    },
+    {
+      "time": "2026/02/09 10:25",
+      "tool": "exec",
+      "summary": "exec: git status --short"
+    }
+  ],
+  "todaySurprise": []
 }

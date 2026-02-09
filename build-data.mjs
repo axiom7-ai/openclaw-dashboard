@@ -6,6 +6,7 @@ const SESSIONS_DIR = process.env.SESSIONS_DIR || "/Users/macos-utm/.openclaw/age
 const OUT_DIR = path.resolve("./data");
 const OUT_FILE = path.join(OUT_DIR, "daily.json");
 const TASKS_FILE = path.join(OUT_DIR, "tasks.json");
+const SURPRISE_FILE = path.join(OUT_DIR, "surprise.json");
 const TZ = "Asia/Shanghai";
 
 const dateFmt = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" });
@@ -18,6 +19,43 @@ function toDateKey(ts) {
 function ensure(obj, key, init) {
   if (!obj[key]) obj[key] = init;
   return obj[key];
+}
+
+function shorten(text, max = 80) {
+  if (!text) return "";
+  const t = String(text).replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  return t.slice(0, max - 1) + "…";
+}
+
+function shortPath(p) {
+  if (!p) return "";
+  return String(p).replace("/Users/macos-utm", "~");
+}
+
+function summarizeToolCall(name, args = {}) {
+  switch (name) {
+    case "exec":
+      return `exec: ${shorten(args.command || "")}`;
+    case "read":
+      return `read: ${shortPath(args.path || args.file_path || "")}`;
+    case "write":
+      return `write: ${shortPath(args.path || args.file_path || "")}`;
+    case "edit":
+      return `edit: ${shortPath(args.path || args.file_path || "")}`;
+    case "browser":
+      return `browser: ${shorten(args.action || "")}${args.targetUrl ? " " + shorten(args.targetUrl, 50) : ""}`;
+    case "web_search":
+      return `web_search: ${shorten(args.query || "")}`;
+    case "web_fetch":
+      return `web_fetch: ${shorten(args.url || "")}`;
+    case "cron":
+      return `cron: ${shorten(args.action || "")}`;
+    case "message":
+      return `message: ${shorten(args.action || "")}${args.target ? " → " + shorten(args.target, 40) : ""}`;
+    default:
+      return `${name}: ${shorten(JSON.stringify(args))}`;
+  }
 }
 
 async function readJsonl(file, onRecord) {
@@ -38,6 +76,7 @@ async function readJsonl(file, onRecord) {
 }
 
 const stats = {};
+const recentActions = [];
 
 const files = fs.readdirSync(SESSIONS_DIR)
   .filter(f => f.endsWith(".jsonl"))
@@ -72,6 +111,12 @@ for (const file of files) {
         day.toolCalls += 1;
         const name = part?.name || "unknown";
         day.toolUsage[name] = (day.toolUsage[name] || 0) + 1;
+
+        recentActions.push({
+          ts,
+          tool: name,
+          summary: summarizeToolCall(name, part?.arguments || {}),
+        });
       }
     }
 
@@ -92,6 +137,15 @@ if (fs.existsSync(TASKS_FILE)) {
     tasksByDate = JSON.parse(fs.readFileSync(TASKS_FILE, "utf8")) || {};
   } catch {
     tasksByDate = {};
+  }
+}
+
+let surpriseByDate = {};
+if (fs.existsSync(SURPRISE_FILE)) {
+  try {
+    surpriseByDate = JSON.parse(fs.readFileSync(SURPRISE_FILE, "utf8")) || {};
+  } catch {
+    surpriseByDate = {};
   }
 }
 
@@ -137,7 +191,45 @@ const rows = Object.values(stats)
     };
   });
 
+const recentActionsRows = recentActions
+  .sort((a, b) => b.ts - a.ts)
+  .slice(0, 20)
+  .map((r) => ({
+    time: new Intl.DateTimeFormat("zh-Hant", {
+      timeZone: TZ,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(new Date(r.ts)),
+    tool: r.tool,
+    summary: r.summary,
+  }));
+
+const todayKey = toDateKey(Date.now());
+const todaySurpriseRaw = surpriseByDate[todayKey];
+const todaySurprise = Array.isArray(todaySurpriseRaw)
+  ? todaySurpriseRaw
+  : todaySurpriseRaw
+    ? [String(todaySurpriseRaw)]
+    : [];
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
-fs.writeFileSync(OUT_FILE, JSON.stringify({ timezone: TZ, generatedAt: new Date().toISOString(), rows }, null, 2));
+fs.writeFileSync(
+  OUT_FILE,
+  JSON.stringify(
+    {
+      timezone: TZ,
+      generatedAt: new Date().toISOString(),
+      rows,
+      recentActions: recentActionsRows,
+      todaySurprise,
+    },
+    null,
+    2
+  )
+);
 
 console.log(`Wrote ${rows.length} day(s) to ${OUT_FILE}`);
