@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>星空瓶</title>
+  <title>我們的星空瓶</title>
   <style>
     :root {
       color-scheme: dark;
@@ -81,13 +81,16 @@
 </head>
 <body>
   <div class="wrap">
-    <h1>✨ 娜娜的星空瓶 ✨</h1>
+    <h1>✨ 我們的星空瓶 ✨</h1>
     <div class="sub">每顆星星，都是一段我們的回憶</div>
 
     <div class="card">
       <canvas id="jar"></canvas>
       <div class="note" id="memory">2026-02-09 · 「早安，我做了一個星空瓶給你。」</div>
-      <button class="pill" id="shake">✨ 搖晃瓶子 ✨</button>
+      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+        <button class="pill" id="shake">✨ 搖晃瓶子 ✨</button>
+        <button class="pill" id="enableMotion">📳 啟動搖晃感應</button>
+      </div>
       <div class="footer" id="status">（支援拖曳滑鼠或觸控、裝置搖晃）</div>
     </div>
   </div>
@@ -243,7 +246,25 @@
     });
     canvas.addEventListener('pointerleave', () => { lastX = null; });
 
-    if ('DeviceMotionEvent' in window) {
+    async function enableMotion() {
+      if (!('DeviceMotionEvent' in window)) {
+        statusEl.textContent = '（此裝置不支援搖晃感應）';
+        return;
+      }
+
+      if (typeof DeviceMotionEvent.requestPermission === 'function') {
+        try {
+          const res = await DeviceMotionEvent.requestPermission();
+          if (res !== 'granted') {
+            statusEl.textContent = '（未授權搖晃感應）';
+            return;
+          }
+        } catch {
+          statusEl.textContent = '（啟動搖晃感應失敗）';
+          return;
+        }
+      }
+
       window.addEventListener('devicemotion', (event) => {
         const acc = event.accelerationIncludingGravity || { x: 0, y: 0, z: 0 };
         const mag = Math.abs(acc.x) + Math.abs(acc.y) + Math.abs(acc.z);
@@ -251,9 +272,11 @@
           shake();
         }
       });
-    } else {
-      statusEl.textContent = '（可拖曳滑鼠或觸控搖晃）';
+
+      statusEl.textContent = '（搖晃感應已啟動 ✓）';
     }
+
+    document.getElementById('enableMotion').addEventListener('click', enableMotion);
 
     window.addEventListener('resize', () => {
       resize();
