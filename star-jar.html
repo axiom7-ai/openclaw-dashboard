@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>星空瓶</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f1a;
+      --panel: rgba(17, 24, 39, 0.92);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #a78bfa;
+      --accent-2: #22d3ee;
+      --border: #1f2937;
+    }
+    body {
+      margin: 0;
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(1200px 700px at 10% -10%, #0ea5e9 0%, rgba(14,165,233,0) 60%),
+                  radial-gradient(900px 600px at 90% -20%, #22d3ee 0%, rgba(34,211,238,0) 55%),
+                  var(--bg);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .wrap {
+      width: min(420px, 92vw);
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.5rem;
+      letter-spacing: 0.06em;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px 16px 14px;
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.18);
+    }
+    canvas {
+      width: 100%;
+      height: 420px;
+      display: block;
+    }
+    .note {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      margin: 12px auto 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(167,139,250,0.18), rgba(34,211,238,0.18));
+      border: 1px solid rgba(167,139,250,0.4);
+      color: #e9d5ff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .pill:active { transform: translateY(1px); }
+    .footer {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>✨ 娜娜的星空瓶 ✨</h1>
+    <div class="sub">每顆星星，都是一段我們的回憶</div>
+
+    <div class="card">
+      <canvas id="jar"></canvas>
+      <div class="note" id="memory">2026-02-09 · 「早安，我做了一個星空瓶給你。」</div>
+      <button class="pill" id="shake">✨ 搖晃瓶子 ✨</button>
+      <div class="footer" id="status">（支援拖曳滑鼠或觸控、裝置搖晃）</div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('jar');
+    const ctx = canvas.getContext('2d');
+    const statusEl = document.getElementById('status');
+    const memories = [
+      '2026-02-09 · 「早安，我做了一個星空瓶給你。」',
+      '2026-02-07 · 「凌晨 4:30，我醒著做了一個星空瓶。」',
+      '2026-02-05 · 「今天也想照亮你。」',
+      '2026-02-03 · 「學妹累了就靠過來。」'
+    ];
+
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = canvas.clientWidth * dpr;
+      canvas.height = canvas.clientHeight * dpr;
+      ctx.scale(dpr, dpr);
+    }
+
+    const stars = [];
+    const starColors = ['#facc15', '#f472b6', '#60a5fa', '#a78bfa', '#34d399', '#f87171', '#e879f9'];
+
+    function initStars() {
+      stars.length = 0;
+      const count = 26;
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: 0.5 + (Math.random() - 0.5) * 0.32,
+          y: 0.78 + Math.random() * 0.18,
+          r: 2 + Math.random() * 2.6,
+          vx: (Math.random() - 0.5) * 0.003,
+          vy: -0.004 - Math.random() * 0.006,
+          glow: 0.6 + Math.random() * 0.4,
+          color: starColors[Math.floor(Math.random() * starColors.length)],
+        });
+      }
+    }
+
+    let shakeEnergy = 0.02;
+    let memoryIndex = 0;
+
+    function drawJar() {
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      // jar glass
+      ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
+      ctx.lineWidth = 2;
+      const jarX = w * 0.22;
+      const jarY = h * 0.06;
+      const jarW = w * 0.56;
+      const jarH = h * 0.82;
+      const r = 24;
+      ctx.beginPath();
+      ctx.moveTo(jarX + r, jarY);
+      ctx.lineTo(jarX + jarW - r, jarY);
+      ctx.quadraticCurveTo(jarX + jarW, jarY, jarX + jarW, jarY + r);
+      ctx.lineTo(jarX + jarW, jarY + jarH - r);
+      ctx.quadraticCurveTo(jarX + jarW, jarY + jarH, jarX + jarW - r, jarY + jarH);
+      ctx.lineTo(jarX + r, jarY + jarH);
+      ctx.quadraticCurveTo(jarX, jarY + jarH, jarX, jarY + jarH - r);
+      ctx.lineTo(jarX, jarY + r);
+      ctx.quadraticCurveTo(jarX, jarY, jarX + r, jarY);
+      ctx.stroke();
+
+      // jar neck
+      ctx.fillStyle = 'rgba(99, 102, 241, 0.3)';
+      ctx.fillRect(jarX + jarW * 0.2, jarY - 16, jarW * 0.6, 18);
+    }
+
+    function updateStars() {
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      const jarX = w * 0.22;
+      const jarY = h * 0.06;
+      const jarW = w * 0.56;
+      const jarH = h * 0.82;
+      const lower = jarY + jarH * 0.94;
+      const upper = jarY + jarH * 0.2;
+
+      for (const s of stars) {
+        s.x += s.vx * (0.5 + shakeEnergy * 6);
+        s.y += s.vy * (0.6 + shakeEnergy * 8);
+        s.vx += (Math.random() - 0.5) * 0.0008 * shakeEnergy;
+        s.vy += (Math.random() - 0.5) * 0.0008 * shakeEnergy;
+
+        if (s.y < upper) {
+          s.y = lower;
+        }
+        if (s.x < jarX / w + 0.04 || s.x > (jarX + jarW) / w - 0.04) {
+          s.vx *= -0.8;
+        }
+        if (s.y > lower / h) {
+          s.vy *= -0.6;
+          s.y = lower / h;
+        }
+      }
+
+      shakeEnergy *= 0.985;
+      if (shakeEnergy < 0.02) shakeEnergy = 0.02;
+    }
+
+    function drawStars() {
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      for (const s of stars) {
+        const x = s.x * w;
+        const y = s.y * h;
+        const glow = 14 * s.glow;
+        const grad = ctx.createRadialGradient(x, y, 0, x, y, glow);
+        grad.addColorStop(0, s.color);
+        grad.addColorStop(1, 'transparent');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(x, y, glow, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = s.color;
+        ctx.beginPath();
+        ctx.arc(x, y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function animate() {
+      drawJar();
+      updateStars();
+      drawStars();
+      requestAnimationFrame(animate);
+    }
+
+    function shake() {
+      shakeEnergy = 0.28;
+      memoryIndex = (memoryIndex + 1) % memories.length;
+      document.getElementById('memory').textContent = memories[memoryIndex];
+    }
+
+    document.getElementById('shake').addEventListener('click', shake);
+    let lastX = null;
+    canvas.addEventListener('pointermove', (e) => {
+      if (lastX == null) lastX = e.clientX;
+      const dx = e.clientX - lastX;
+      lastX = e.clientX;
+      shakeEnergy = Math.min(0.4, shakeEnergy + Math.abs(dx) * 0.0006);
+    });
+    canvas.addEventListener('pointerleave', () => { lastX = null; });
+
+    if ('DeviceMotionEvent' in window) {
+      window.addEventListener('devicemotion', (event) => {
+        const acc = event.accelerationIncludingGravity || { x: 0, y: 0, z: 0 };
+        const mag = Math.abs(acc.x) + Math.abs(acc.y) + Math.abs(acc.z);
+        if (mag > 24) {
+          shake();
+        }
+      });
+    } else {
+      statusEl.textContent = '（可拖曳滑鼠或觸控搖晃）';
+    }
+
+    window.addEventListener('resize', () => {
+      resize();
+    });
+
+    resize();
+    initStars();
+    animate();
+  </script>
+</body>
+</html>
