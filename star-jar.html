@@ -625,8 +625,8 @@ function enableMotion() {
     
     const accNoG = event.acceleration;
     if (accNoG) {
-      shakeX += (accNoG.x || 0) * 0.5;
-      shakeY += -(accNoG.y || 0) * 0.5; // y 軸通常相反
+      shakeX += (accNoG.x || 0) * 0.18;
+      shakeY += -(accNoG.y || 0) * 0.18; // y 軸通常相反
     }
   });
   
@@ -635,9 +635,9 @@ function enableMotion() {
     const gamma = event.gamma; // Left/Right
     const beta = event.beta;   // Front/Back
     if (gamma !== null && beta !== null) {
-      shakeX += gamma * 0.05;
+      shakeX += gamma * 0.02;
       // 減去 45 度當作手持基準點
-      shakeY += (beta - 45) * 0.05;
+      shakeY += (beta - 45) * 0.02;
     }
   });
 }
