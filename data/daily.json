@@ -1,31 +1,85 @@
 {
   "timezone": "Asia/Shanghai",
-  "generatedAt": "2026-02-09T02:57:56.944Z",
+  "generatedAt": "2026-02-10T16:00:34.289Z",
   "rows": [
     {
-      "date": "2026-02-09",
-      "userMessages": 33,
-      "assistantMessages": 102,
-      "toolCalls": 78,
+      "date": "2026-02-11",
+      "userMessages": 1,
+      "assistantMessages": 8,
+      "toolCalls": 8,
       "toolUsage": {
-        "read": 27,
+        "exec": 5,
+        "read": 2,
+        "edit": 1
+      },
+      "inputTokens": 9152,
+      "outputTokens": 620,
+      "totalTokens": 96172,
+      "costUsd": 0.039816000000000004,
+      "summary": "執行指令×5、讀取檔案×2、修改檔案×1",
+      "summaryCounts": {
+        "讀取檔案": 2,
+        "修改檔案": 1,
+        "執行指令": 5
+      },
+      "tasks": []
+    },
+    {
+      "date": "2026-02-10",
+      "userMessages": 49,
+      "assistantMessages": 193,
+      "toolCalls": 113,
+      "toolUsage": {
+        "memory_search": 2,
+        "cron": 22,
+        "exec": 14,
+        "web_fetch": 1,
+        "read": 21,
+        "write": 2,
+        "browser": 1,
+        "edit": 10,
+        "gateway": 1,
+        "process": 39
+      },
+      "inputTokens": 1341446,
+      "outputTokens": 30375,
+      "totalTokens": 7138987,
+      "costUsd": 4.373963849999999,
+      "summary": "執行指令×53、排程/提醒×22、讀取檔案×21、修改檔案×12、查詢網頁×2、系統/設定×1",
+      "summaryCounts": {
+        "讀取檔案": 21,
+        "修改檔案": 12,
+        "執行指令": 53,
+        "查詢網頁": 2,
+        "排程/提醒": 22,
+        "系統/設定": 1
+      },
+      "tasks": []
+    },
+    {
+      "date": "2026-02-09",
+      "userMessages": 75,
+      "assistantMessages": 270,
+      "toolCalls": 147,
+      "toolUsage": {
+        "read": 31,
         "cron": 1,
         "memory_search": 1,
-        "write": 4,
-        "exec": 30,
-        "edit": 11,
+        "write": 5,
+        "exec": 69,
+        "edit": 36,
         "process": 3,
         "sessions_list": 1
       },
-      "inputTokens": 315724,
-      "outputTokens": 12430,
-      "totalTokens": 2227802,
-      "costUsd": 1.0589754,
-      "summary": "執行指令×33、讀取檔案×27、修改檔案×15、排程/提醒×1、代理管理×1",
+      "inputTokens": 852759,
+      "outputTokens": 28769,
+      "totalTokens": 5245432,
+      "costUsd": 2.6587774499999965,
+      "summary": "執行指令×72、修改檔案×41、讀取檔案×31、排程/提醒×1、代理管理×1",
       "summaryCounts": {
-        "讀取檔案": 27,
-        "修改檔案": 15,
-        "執行指令": 33,
+        "讀取檔案": 31,
+        "修改檔案": 41,
+        "執行指令": 72,
         "排程/提醒": 1,
         "代理管理": 1
       },
@@ -151,165 +205,109 @@
         "系統/設定": 5
       },
       "tasks": []
-    },
-    {
-      "date": "2026-02-04",
-      "userMessages": 63,
-      "assistantMessages": 115,
-      "toolCalls": 56,
-      "toolUsage": {
-        "web_search": 1,
-        "exec": 32,
-        "web_fetch": 8,
-        "read": 5,
-        "edit": 5,
-        "cron": 3,
-        "browser": 2
-      },
-      "inputTokens": 2949016,
-      "outputTokens": 16654,
-      "totalTokens": 5228717,
-      "costUsd": 16.2929535,
-      "summary": "執行指令×32、查詢網頁×11、讀取檔案×5、修改檔案×5、排程/提醒×3",
-      "summaryCounts": {
-        "讀取檔案": 5,
-        "修改檔案": 5,
-        "執行指令": 32,
-        "查詢網頁": 11,
-        "排程/提醒": 3
-      },
-      "tasks": []
-    },
-    {
-      "date": "2026-02-03",
-      "userMessages": 31,
-      "assistantMessages": 69,
-      "toolCalls": 44,
-      "toolUsage": {
-        "read": 23,
-        "memory_search": 1,
-        "exec": 13,
-        "write": 2,
-        "web_search": 2,
-        "web_fetch": 3
-      },
-      "inputTokens": 1188813,
-      "outputTokens": 12802,
-      "totalTokens": 2391620,
-      "costUsd": 5.9605755,
-      "summary": "讀取檔案×23、執行指令×13、查詢網頁×5、修改檔案×2",
-      "summaryCounts": {
-        "讀取檔案": 23,
-        "修改檔案": 2,
-        "執行指令": 13,
-        "查詢網頁": 5
-      },
-      "tasks": []
     }
   ],
   "recentActions": [
     {
-      "time": "2026/02/09 10:57",
+      "time": "2026/02/11 00:00",
       "tool": "exec",
       "summary": "exec: node build-data.mjs"
     },
     {
-      "time": "2026/02/09 10:57",
+      "time": "2026/02/11 00:00",
       "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/data/surprise.json"
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/09 10:55",
+      "time": "2026/02/11 00:00",
       "tool": "exec",
-      "summary": "exec: git push"
+      "summary": "exec: git status -sb"
     },
     {
-      "time": "2026/02/09 10:55",
+      "time": "2026/02/11 00:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/memory/2026-02-10.md"
+    },
+    {
+      "time": "2026/02/11 00:00",
       "tool": "exec",
-      "summary": "exec: git commit -m \"Make recent actions collapsible\""
+      "summary": "exec: ls memory"
     },
     {
-      "time": "2026/02/09 10:55",
+      "time": "2026/02/11 00:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
+    },
+    {
+      "time": "2026/02/11 00:00",
       "tool": "exec",
-      "summary": "exec: git add index.html"
+      "summary": "exec: ls data"
     },
     {
-      "time": "2026/02/09 10:55",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/index.html"
-    },
-    {
-      "time": "2026/02/09 10:27",
+      "time": "2026/02/11 00:00",
       "tool": "exec",
-      "summary": "exec: git push"
+      "summary": "exec: ls"
     },
     {
-      "time": "2026/02/09 10:27",
-      "tool": "exec",
-      "summary": "exec: git commit -m \"Add recent actions and daily surprise panels\""
+      "time": "2026/02/10 23:56",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/09 10:27",
-      "tool": "exec",
-      "summary": "exec: git add build-data.mjs index.html data/daily.json data/surprise.json"
+      "time": "2026/02/10 23:26",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/09 10:27",
-      "tool": "exec",
-      "summary": "exec: git status --short"
+      "time": "2026/02/10 22:56",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/09 10:27",
-      "tool": "exec",
-      "summary": "exec: node build-data.mjs"
+      "time": "2026/02/10 22:26",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/09 10:27",
-      "tool": "write",
-      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/data/surprise.json"
+      "time": "2026/02/10 21:56",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/09 10:27",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/index.html"
+      "time": "2026/02/10 21:26",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/09 10:26",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/index.html"
+      "time": "2026/02/10 21:26",
+      "tool": "process",
+      "summary": "process: {\"action\":\"poll\",\"sessionId\":\"salty-crustacean\"}"
     },
     {
-      "time": "2026/02/09 10:26",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+      "time": "2026/02/10 21:26",
+      "tool": "process",
+      "summary": "process: {\"action\":\"send-keys\",\"sessionId\":\"salty-crustacean\",\"keys\":[\"CTRL_C\"]}"
     },
     {
-      "time": "2026/02/09 10:26",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+      "time": "2026/02/10 21:26",
+      "tool": "process",
+      "summary": "process: {\"action\":\"poll\",\"sessionId\":\"salty-crustacean\"}"
     },
     {
-      "time": "2026/02/09 10:26",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+      "time": "2026/02/10 21:26",
+      "tool": "process",
+      "summary": "process: {\"action\":\"send-keys\",\"sessionId\":\"salty-crustacean\",\"keys\":[\"ENTER\"]}"
     },
     {
-      "time": "2026/02/09 10:26",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+      "time": "2026/02/10 21:26",
+      "tool": "process",
+      "summary": "process: {\"action\":\"poll\",\"sessionId\":\"salty-crustacean\",\"offset\":0,\"limit\":2000}"
     },
     {
-      "time": "2026/02/09 10:26",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
-    },
-    {
-      "time": "2026/02/09 10:26",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+      "time": "2026/02/10 21:26",
+      "tool": "process",
+      "summary": "process: {\"action\":\"poll\",\"sessionId\":\"salty-crustacean\"}"
     }
   ],
-  "todaySurprise": [
-    "今日驚喜：把任何常用指令包成一個一行 alias（例如 deploy），省下每次 20 秒，一週就多出一杯咖啡的時間。要不要我幫你挑一個專案的 alias？"
-  ]
+  "todaySurprise": []
 }
