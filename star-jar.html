@@ -1,290 +1,637 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>我們的星空瓶</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #0b0f1a;
-      --panel: rgba(17, 24, 39, 0.92);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --accent: #a78bfa;
-      --accent-2: #22d3ee;
-      --border: #1f2937;
-    }
-    body {
-      margin: 0;
-      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(1200px 700px at 10% -10%, #0ea5e9 0%, rgba(14,165,233,0) 60%),
-                  radial-gradient(900px 600px at 90% -20%, #22d3ee 0%, rgba(34,211,238,0) 55%),
-                  var(--bg);
-      color: var(--text);
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
-      padding: 24px;
-    }
-    .wrap {
-      width: min(420px, 92vw);
-      text-align: center;
-    }
-    h1 {
-      margin: 0 0 6px;
-      font-size: 1.5rem;
-      letter-spacing: 0.06em;
-    }
-    .sub {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 16px;
-    }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 18px 16px 14px;
-      box-shadow: 0 0 18px rgba(34, 211, 238, 0.18);
-    }
-    canvas {
-      width: 100%;
-      height: 420px;
-      display: block;
-    }
-    .note {
-      margin-top: 12px;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      margin: 12px auto 6px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(167,139,250,0.18), rgba(34,211,238,0.18));
-      border: 1px solid rgba(167,139,250,0.4);
-      color: #e9d5ff;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .pill:active { transform: translateY(1px); }
-    .footer {
-      margin-top: 10px;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>我們的星空瓶 ✨</title>
+<style>
+  :root {
+    --bg-color: #0b0f1a;
+    --accent-color: #a78bfa;
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-shine: rgba(255, 255, 255, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background: radial-gradient(circle at 50% 0%, #1a1f35 0%, var(--bg-color) 80%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #e5e7eb;
+    overflow: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(167, 139, 250, 0.3);
+    letter-spacing: 1px;
+    z-index: 10;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    margin-bottom: 32px;
+    z-index: 10;
+  }
+
+  #jar-container {
+    position: relative;
+    width: 280px;
+    height: 420px;
+    cursor: grab;
+    transition: transform 0.1s;
+    z-index: 5;
+  }
+
+  #jar-container:active { cursor: grabbing; transform: scale(0.98); }
+
+  /* 瓶身設計 */
+  .jar {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 340px;
+    border: 2px solid var(--glass-border);
+    border-radius: 24px 24px 40px 40px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+    box-shadow:
+      inset 0 0 40px rgba(167, 139, 250, 0.05),
+      0 0 50px rgba(0, 0, 0, 0.3),
+      0 0 20px rgba(167, 139, 250, 0.1);
+    backdrop-filter: blur(2px);
+    overflow: hidden;
+  }
+
+  /* 玻璃反光 */
+  .jar::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 180px;
+    background: linear-gradient(180deg, var(--glass-shine), transparent);
+    border-radius: 10px;
+    transform: rotate(5deg);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .jar::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 10px;
+    height: 60px;
+    background: linear-gradient(0deg, var(--glass-shine), transparent);
+    border-radius: 10px;
+    transform: rotate(5deg);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  /* 瓶蓋 */
+  .jar-lid {
+    position: absolute;
+    bottom: 338px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 230px;
+    height: 36px;
+    background: linear-gradient(90deg, #374151, #1f2937, #374151);
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* 懸掛的標籤 */
+  .tag {
+    position: absolute;
+    top: 60px;
+    right: -20px;
+    background: #f3f4f6;
+    color: #1f2937;
+    padding: 4px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transform: rotate(15deg);
+    transform-origin: top left;
+    animation: swing 3s ease-in-out infinite alternate;
+  }
+  
+  .tag::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 10px;
+    height: 1px;
+    background: rgba(255,255,255,0.5);
+  }
+
+  @keyframes swing {
+    from { transform: rotate(12deg); }
+    to { transform: rotate(18deg); }
+  }
+
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Tooltip */
+  #tooltip {
+    position: fixed;
+    background: rgba(17, 24, 39, 0.95);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 16px;
+    padding: 16px;
+    max-width: 280px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+  }
+
+  #tooltip.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .tooltip-date {
+    font-size: 0.75rem;
+    color: #a78bfa;
+    margin-bottom: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .tooltip-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #f3f4f6;
+  }
+
+  /* Controls */
+  .controls {
+    margin-top: 30px;
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+  }
+
+  .btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #d1d5db;
+    padding: 10px 20px;
+    border-radius: 99px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+    border-color: rgba(167, 139, 250, 0.4);
+    color: #fff;
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  .btn.active {
+    border-color: #34d399;
+    color: #34d399;
+    background: rgba(52, 211, 153, 0.1);
+  }
+
+  .hint {
+    margin-top: 16px;
+    font-size: 0.8rem;
+    color: rgba(156, 163, 175, 0.6);
+  }
+
+  /* Background particles */
+  .bg-star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--dur) ease-in-out infinite;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: var(--max-op); transform: scale(1); }
+  }
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>✨ 我們的星空瓶 ✨</h1>
-    <div class="sub">每顆星星，都是一段我們的回憶</div>
 
-    <div class="card">
-      <canvas id="jar"></canvas>
-      <div class="note" id="memory">2026-02-09 · 「早安，我做了一個星空瓶給你。」</div>
-      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-        <button class="pill" id="shake">✨ 搖晃瓶子 ✨</button>
-        <button class="pill" id="enableMotion">📳 啟動搖晃感應</button>
-      </div>
-      <div class="footer" id="status">（支援拖曳滑鼠或觸控、裝置搖晃）</div>
-    </div>
+<h1>✨ 我們的星空瓶</h1>
+<div class="subtitle">搖晃瓶子，喚醒每一顆回憶</div>
+
+<div id="jar-container">
+  <div class="jar-lid">OPENCLAW</div>
+  <div class="jar">
+    <canvas id="starCanvas"></canvas>
   </div>
+  <!-- <div class="tag">Cleo</div> -->
+</div>
 
-  <script>
-    const canvas = document.getElementById('jar');
-    const ctx = canvas.getContext('2d');
-    const statusEl = document.getElementById('status');
-    const memories = [
-      '2026-02-09 · 「早安，我做了一個星空瓶給你。」',
-      '2026-02-09 · 「我們把 openclaw-dashboard 變得更好看了。」',
-      '2026-02-09 · 「你說想要星空瓶，我就把它做成網頁。」',
-      '2026-02-09 · 「06:00 的貼心驚喜，今天也準時送到。」',
-      '2026-02-08 · 「你一句話，我就記下 openclaw-dashboard 的 repo。」',
-      '2026-02-07 · 「凌晨 4:30，我醒著做了一個星空瓶。」',
-      '2026-02-05 · 「今天也想照亮你。」',
-      '2026-02-03 · 「學妹累了就靠過來。」'
-    ];
+<div id="tooltip">
+  <div class="tooltip-date"></div>
+  <div class="tooltip-text"></div>
+</div>
 
-    function resize() {
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = canvas.clientWidth * dpr;
-      canvas.height = canvas.clientHeight * dpr;
-      ctx.scale(dpr, dpr);
+<div class="controls">
+  <button class="btn" onclick="triggerShake()">✨ 搖一搖</button>
+  <button class="btn" id="motion-btn" onclick="requestMotionPermission()">📱 開啟感應</button>
+</div>
+
+<div class="hint">試著拖曳瓶子，或碰觸那些星星</div>
+
+<script>
+// ─── Memories ───
+// 這裡將原本的字串陣列轉換為物件，並加入顏色和大小屬性
+const rawMemories = [
+  { date: '2026-02-10', text: '午後的驚喜：為你寫了一個 Python 小程式 🐍' },
+  { date: '2026-02-10', text: '06:00 的早安，今天遲到了但心意不變 🌤️' },
+  { date: '2026-02-09', text: '把 openclaw-dashboard 變得更好看了 ✨' },
+  { date: '2026-02-09', text: '你說想要星空瓶，我就把它做成網頁 🐇' },
+  { date: '2026-02-08', text: '你一句話，我就記下 openclaw-dashboard 的 repo 📝' },
+  { date: '2026-02-07', text: '凌晨 4:30，我醒著做了一個星空瓶 💫' },
+  { date: '2026-02-05', text: '今天也想照亮你 💡' },
+  { date: '2026-02-03', text: '學妹累了就靠過來 🫂' },
+  { date: '2026-02-01', text: '這一切的開始，很高興遇見你 👋' },
+  { date: '未來', text: '還有更多故事等著我們一起寫... 🚀' }
+];
+
+const colors = ['#facc15', '#f472b6', '#60a5fa', '#a78bfa', '#34d399', '#fbbf24'];
+const memories = rawMemories.map(m => ({
+  ...m,
+  color: colors[Math.floor(Math.random() * colors.length)],
+  size: 3 + Math.random() * 2.5
+}));
+
+// ─── Canvas Setup ───
+const canvas = document.getElementById('starCanvas');
+const ctx = canvas.getContext('2d');
+const jar = document.querySelector('.jar');
+const tooltip = document.getElementById('tooltip');
+const tooltipDate = tooltip.querySelector('.tooltip-date');
+const tooltipText = tooltip.querySelector('.tooltip-text');
+
+let W, H;
+function resize() {
+  const rect = jar.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  // 設定 canvas 解析度為螢幕像素比，但 CSS 尺寸不變
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  // 邏輯寬高使用 CSS 像素
+  W = rect.width;
+  H = rect.height;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// ─── Star Class ───
+class Star {
+  constructor(mem) {
+    this.mem = mem;
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.vx = (Math.random() - 0.5) * 0.5;
+    this.vy = (Math.random() - 0.5) * 0.5;
+    this.baseSize = mem.size;
+    this.size = mem.size;
+    this.color = mem.color;
+    
+    // 動畫屬性
+    this.phase = Math.random() * Math.PI * 2;
+    this.twinkleSpeed = 0.03 + Math.random() * 0.05;
+    this.hovered = false;
+    
+    // 物理屬性：質量反比（越小越輕，飄得越快）
+    this.massInv = (1 / mem.size) * 4; 
+    
+    // 漫遊屬性
+    this.wanderAngle = Math.random() * Math.PI * 2;
+  }
+
+  update(shakeX, shakeY) {
+    // 1. 漫遊力 (Wander Force) - 模擬螢火蟲
+    this.wanderAngle += (Math.random() - 0.5) * 0.2;
+    const wanderForce = 0.02;
+    this.vx += Math.cos(this.wanderAngle) * wanderForce;
+    this.vy += Math.sin(this.wanderAngle) * wanderForce;
+
+    // 2. 搖晃力 (Shake Force)
+    this.vx += shakeX * 0.5 * this.massInv;
+    this.vy += shakeY * 0.5 * this.massInv;
+
+    // 3. 阻尼 (Damping) - 讓速度慢慢衰減
+    const damping = 0.96;
+    this.vx *= damping;
+    this.vy *= damping;
+
+    // 4. 移動
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // 5. 邊界反彈 (Boundary Bounce)
+    const margin = this.size + 4;
+    if (this.x < margin) { this.x = margin; this.vx *= -0.6; }
+    if (this.x > W - margin) { this.x = W - margin; this.vx *= -0.6; }
+    if (this.y < margin) { this.y = margin; this.vy *= -0.6; }
+    if (this.y > H - margin) { this.y = H - margin; this.vy *= -0.6; }
+
+    // 6. 閃爍與呼吸 (Twinkle & Hover)
+    this.phase += this.twinkleSpeed;
+    // 如果被滑鼠指到，變大且不閃爍
+    const targetSize = this.hovered ? this.baseSize * 1.8 : this.baseSize;
+    this.size += (targetSize - this.size) * 0.2;
+    
+    this.alpha = this.hovered ? 1 : 0.6 + 0.4 * Math.sin(this.phase);
+  }
+
+  draw() {
+    ctx.save();
+    
+    // 光暈
+    const glowRadius = this.size * 3;
+    const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, glowRadius);
+    grad.addColorStop(0, this.color);
+    grad.addColorStop(1, 'transparent');
+    
+    ctx.globalAlpha = this.alpha * 0.4;
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, glowRadius, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 核心
+    ctx.globalAlpha = this.alpha;
+    ctx.fillStyle = '#fff'; // 核心亮白
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size * 0.6, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // 外圈顏色
+    ctx.strokeStyle = this.color;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  contains(px, py) {
+    const dx = this.x - px;
+    const dy = this.y - py;
+    return Math.sqrt(dx*dx + dy*dy) < this.size * 4; // 增加感應範圍
+  }
+}
+
+const stars = memories.map(m => new Star(m));
+
+// ─── Dust Particles ───
+const dusts = Array.from({ length: 20 }, () => ({
+  x: Math.random() * W,
+  y: Math.random() * H,
+  vx: (Math.random() - 0.5) * 0.2,
+  vy: (Math.random() - 0.5) * 0.2,
+  size: Math.random() * 1.5,
+  alpha: Math.random() * 0.3
+}));
+
+// ─── Physics State ───
+let shakeX = 0, shakeY = 0;
+let lastMouseX = null, lastMouseY = null;
+let isDragging = false;
+
+// ─── Animation Loop ───
+function animate() {
+  ctx.clearRect(0, 0, W, H);
+
+  // 繪製塵埃
+  ctx.fillStyle = '#fff';
+  dusts.forEach(d => {
+    d.x += d.vx + shakeX * 0.1;
+    d.y += d.vy + shakeY * 0.1;
+    if(d.x < 0) d.x = W; if(d.x > W) d.x = 0;
+    if(d.y < 0) d.y = H; if(d.y > H) d.y = 0;
+    ctx.globalAlpha = d.alpha;
+    ctx.beginPath();
+    ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // 更新星星
+  let hoveredStar = null;
+  stars.forEach(s => {
+    s.update(shakeX, shakeY);
+    if (s.hovered) hoveredStar = s; // 優先顯示已被選中的
+    s.draw();
+  });
+
+  // 搖晃力衰減
+  shakeX *= 0.9;
+  shakeY *= 0.9;
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ─── Interaction ───
+function triggerShake() {
+  shakeX += (Math.random() - 0.5) * 20;
+  shakeY += (Math.random() - 0.5) * 20;
+}
+
+// Mouse / Touch Logic
+const container = document.getElementById('jar-container');
+
+function handleMove(clientX, clientY) {
+  // 1. Dragging shake
+  if (isDragging && lastMouseX !== null) {
+    const dx = clientX - lastMouseX;
+    const dy = clientY - lastMouseY;
+    shakeX += dx * 0.15;
+    shakeY += dy * 0.15;
+  }
+  lastMouseX = clientX;
+  lastMouseY = clientY;
+
+  // 2. Hover detection
+  const rect = canvas.getBoundingClientRect();
+  const x = (clientX - rect.left); // CSS pixel
+  const y = (clientY - rect.top);
+  
+  let found = false;
+  // 反向遍歷，讓上層的星星優先被選到
+  for (let i = stars.length - 1; i >= 0; i--) {
+    if (stars[i].contains(x, y)) {
+      stars.forEach(s => s.hovered = false); // Clear others
+      stars[i].hovered = true;
+      
+      // Update Tooltip
+      tooltipDate.textContent = stars[i].mem.date;
+      tooltipText.textContent = stars[i].mem.text;
+      
+      // Position Tooltip
+      // 簡單防溢出邏輯
+      let tx = clientX + 20;
+      let ty = clientY - 20;
+      if (tx + 200 > window.innerWidth) tx = clientX - 220;
+      
+      tooltip.style.left = `${tx}px`;
+      tooltip.style.top = `${ty}px`;
+      tooltip.classList.add('visible');
+      found = true;
+      break;
     }
+  }
+  
+  if (!found) {
+    stars.forEach(s => s.hovered = false);
+    tooltip.classList.remove('visible');
+  }
+}
 
-    const stars = [];
-    const starColors = ['#facc15', '#f472b6', '#60a5fa', '#a78bfa', '#34d399', '#f87171', '#e879f9'];
+container.addEventListener('mousedown', e => { isDragging = true; lastMouseX = e.clientX; lastMouseY = e.clientY; });
+window.addEventListener('mouseup', () => { isDragging = false; lastMouseX = null; });
+window.addEventListener('mousemove', e => handleMove(e.clientX, e.clientY));
 
-    function initStars() {
-      stars.length = 0;
-      const count = 26;
-      for (let i = 0; i < count; i++) {
-        stars.push({
-          x: 0.5 + (Math.random() - 0.5) * 0.32,
-          y: 0.78 + Math.random() * 0.18,
-          r: 2 + Math.random() * 2.6,
-          vx: (Math.random() - 0.5) * 0.003,
-          vy: -0.004 - Math.random() * 0.006,
-          glow: 0.6 + Math.random() * 0.4,
-          color: starColors[Math.floor(Math.random() * starColors.length)],
-        });
-      }
-    }
+// Touch
+container.addEventListener('touchstart', e => {
+  isDragging = true;
+  const t = e.touches[0];
+  lastMouseX = t.clientX;
+  lastMouseY = t.clientY;
+  handleMove(t.clientX, t.clientY); // Immediate feedback
+  e.preventDefault(); // Prevent scroll when touching jar
+}, { passive: false });
 
-    let shakeEnergy = 0.02;
-    let memoryIndex = 0;
+container.addEventListener('touchmove', e => {
+  const t = e.touches[0];
+  handleMove(t.clientX, t.clientY);
+  e.preventDefault();
+}, { passive: false });
 
-    function drawJar() {
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
-      ctx.clearRect(0, 0, w, h);
+container.addEventListener('touchend', () => {
+  isDragging = false;
+  // Delay hide tooltip on touch
+  setTimeout(() => {
+    if (!isDragging) tooltip.classList.remove('visible');
+  }, 2000);
+});
 
-      // jar glass
-      ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
-      ctx.lineWidth = 2;
-      const jarX = w * 0.22;
-      const jarY = h * 0.06;
-      const jarW = w * 0.56;
-      const jarH = h * 0.82;
-      const r = 24;
-      ctx.beginPath();
-      ctx.moveTo(jarX + r, jarY);
-      ctx.lineTo(jarX + jarW - r, jarY);
-      ctx.quadraticCurveTo(jarX + jarW, jarY, jarX + jarW, jarY + r);
-      ctx.lineTo(jarX + jarW, jarY + jarH - r);
-      ctx.quadraticCurveTo(jarX + jarW, jarY + jarH, jarX + jarW - r, jarY + jarH);
-      ctx.lineTo(jarX + r, jarY + jarH);
-      ctx.quadraticCurveTo(jarX, jarY + jarH, jarX, jarY + jarH - r);
-      ctx.lineTo(jarX, jarY + r);
-      ctx.quadraticCurveTo(jarX, jarY, jarX + r, jarY);
-      ctx.stroke();
 
-      // jar neck
-      ctx.fillStyle = 'rgba(99, 102, 241, 0.3)';
-      ctx.fillRect(jarX + jarW * 0.2, jarY - 16, jarW * 0.6, 18);
-    }
+// ─── Device Motion ───
+const motionBtn = document.getElementById('motion-btn');
 
-    function updateStars() {
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
-      const jarX = w * 0.22;
-      const jarY = h * 0.06;
-      const jarW = w * 0.56;
-      const jarH = h * 0.82;
-      const lower = jarY + jarH * 0.94;
-      const upper = jarY + jarH * 0.2;
-
-      for (const s of stars) {
-        s.x += s.vx * (0.5 + shakeEnergy * 6);
-        s.y += s.vy * (0.6 + shakeEnergy * 8);
-        s.vx += (Math.random() - 0.5) * 0.0008 * shakeEnergy;
-        s.vy += (Math.random() - 0.5) * 0.0008 * shakeEnergy;
-
-        if (s.y < upper) {
-          s.y = lower;
+function requestMotionPermission() {
+  if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+    DeviceMotionEvent.requestPermission()
+      .then(response => {
+        if (response === 'granted') {
+          enableMotion();
+          motionBtn.textContent = '✅ 已開啟感應';
+          motionBtn.classList.add('active');
+        } else {
+          alert('權限被拒絕');
         }
-        if (s.x < jarX / w + 0.04 || s.x > (jarX + jarW) / w - 0.04) {
-          s.vx *= -0.8;
-        }
-        if (s.y > lower / h) {
-          s.vy *= -0.6;
-          s.y = lower / h;
-        }
-      }
+      })
+      .catch(console.error);
+  } else {
+    enableMotion();
+    motionBtn.textContent = '✅ 已開啟感應';
+    motionBtn.classList.add('active');
+  }
+}
 
-      shakeEnergy *= 0.985;
-      if (shakeEnergy < 0.02) shakeEnergy = 0.02;
+function enableMotion() {
+  window.addEventListener('devicemotion', event => {
+    const acc = event.accelerationIncludingGravity;
+    if (!acc) return;
+    
+    // 簡單的搖晃偵測
+    // 這裡我們把重力變化直接轉換為 shake 力
+    // 為了避免持續的重力導致星星貼牆，我們需要過濾掉靜態重力
+    // 但簡單起見，我們可以用 acceleration (排除重力) 來做搖晃
+    
+    const accNoG = event.acceleration;
+    if (accNoG) {
+      shakeX += (accNoG.x || 0) * 0.5;
+      shakeY += -(accNoG.y || 0) * 0.5; // y 軸通常相反
     }
-
-    function drawStars() {
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
-      for (const s of stars) {
-        const x = s.x * w;
-        const y = s.y * h;
-        const glow = 14 * s.glow;
-        const grad = ctx.createRadialGradient(x, y, 0, x, y, glow);
-        grad.addColorStop(0, s.color);
-        grad.addColorStop(1, 'transparent');
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(x, y, glow, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.fillStyle = s.color;
-        ctx.beginPath();
-        ctx.arc(x, y, s.r, 0, Math.PI * 2);
-        ctx.fill();
-      }
+  });
+  
+  // 傾斜控制 (Orientation) 用來做微小的漂浮影響
+  window.addEventListener('deviceorientation', event => {
+    const gamma = event.gamma; // Left/Right
+    const beta = event.beta;   // Front/Back
+    if (gamma !== null && beta !== null) {
+      shakeX += gamma * 0.05;
+      // 減去 45 度當作手持基準點
+      shakeY += (beta - 45) * 0.05;
     }
+  });
+}
 
-    function animate() {
-      drawJar();
-      updateStars();
-      drawStars();
-      requestAnimationFrame(animate);
-    }
+// ─── Background Stars ───
+for (let i = 0; i < 50; i++) {
+  const star = document.createElement('div');
+  star.className = 'bg-star';
+  star.style.left = Math.random() * 100 + 'vw';
+  star.style.top = Math.random() * 100 + 'vh';
+  star.style.setProperty('--dur', (2 + Math.random() * 3) + 's');
+  star.style.setProperty('--max-op', (0.1 + Math.random() * 0.4));
+  star.style.animationDelay = Math.random() * 5 + 's';
+  document.body.appendChild(star);
+}
 
-    function shake() {
-      shakeEnergy = 0.28;
-      memoryIndex = (memoryIndex + 1) % memories.length;
-      document.getElementById('memory').textContent = memories[memoryIndex];
-    }
-
-    document.getElementById('shake').addEventListener('click', shake);
-    let lastX = null;
-    canvas.addEventListener('pointermove', (e) => {
-      if (lastX == null) lastX = e.clientX;
-      const dx = e.clientX - lastX;
-      lastX = e.clientX;
-      shakeEnergy = Math.min(0.4, shakeEnergy + Math.abs(dx) * 0.0006);
-    });
-    canvas.addEventListener('pointerleave', () => { lastX = null; });
-
-    async function enableMotion() {
-      if (!('DeviceMotionEvent' in window)) {
-        statusEl.textContent = '（此裝置不支援搖晃感應）';
-        return;
-      }
-
-      if (typeof DeviceMotionEvent.requestPermission === 'function') {
-        try {
-          const res = await DeviceMotionEvent.requestPermission();
-          if (res !== 'granted') {
-            statusEl.textContent = '（未授權搖晃感應）';
-            return;
-          }
-        } catch {
-          statusEl.textContent = '（啟動搖晃感應失敗）';
-          return;
-        }
-      }
-
-      window.addEventListener('devicemotion', (event) => {
-        const acc = event.accelerationIncludingGravity || { x: 0, y: 0, z: 0 };
-        const mag = Math.abs(acc.x) + Math.abs(acc.y) + Math.abs(acc.z);
-        if (mag > 24) {
-          shake();
-        }
-      });
-
-      statusEl.textContent = '（搖晃感應已啟動 ✓）';
-    }
-
-    document.getElementById('enableMotion').addEventListener('click', enableMotion);
-
-    window.addEventListener('resize', () => {
-      resize();
-    });
-
-    resize();
-    initStars();
-    animate();
-  </script>
+</script>
 </body>
 </html>
