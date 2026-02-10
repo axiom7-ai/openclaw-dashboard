@@ -290,8 +290,7 @@
 
 <script>
 // ─── Memories ───
-// 這裡將原本的字串陣列轉換為物件，並加入顏色和大小屬性
-const rawMemories = [
+const fallbackMemories = [
   { date: '2026-02-10', text: '午後的驚喜：為你寫了一個 Python 小程式 🐍' },
   { date: '2026-02-10', text: '06:00 的早安，今天遲到了但心意不變 🌤️' },
   { date: '2026-02-09', text: '把 openclaw-dashboard 變得更好看了 ✨' },
@@ -305,11 +304,27 @@ const rawMemories = [
 ];
 
 const colors = ['#facc15', '#f472b6', '#60a5fa', '#a78bfa', '#34d399', '#fbbf24'];
-const memories = rawMemories.map(m => ({
-  ...m,
-  color: colors[Math.floor(Math.random() * colors.length)],
-  size: 3 + Math.random() * 2.5
-}));
+let memories = [];
+
+async function loadMemories() {
+  try {
+    const res = await fetch('data/star-jar.json?ts=' + Date.now());
+    if (!res.ok) throw new Error('fetch failed');
+    const data = await res.json();
+    memories = (Array.isArray(data) ? data : fallbackMemories).map(m => ({
+      ...m,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: 3 + Math.random() * 2.5
+    }));
+  } catch (err) {
+    console.warn('Load memories failed, fallback to embedded list.', err);
+    memories = fallbackMemories.map(m => ({
+      ...m,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: 3 + Math.random() * 2.5
+    }));
+  }
+}
 
 // ─── Canvas Setup ───
 const canvas = document.getElementById('starCanvas');
@@ -433,7 +448,7 @@ class Star {
   }
 }
 
-const stars = memories.map(m => new Star(m));
+let stars = [];
 
 // ─── Dust Particles ───
 const dusts = Array.from({ length: 20 }, () => ({
@@ -481,7 +496,14 @@ function animate() {
 
   requestAnimationFrame(animate);
 }
-animate();
+
+async function boot() {
+  await loadMemories();
+  stars = memories.map(m => new Star(m));
+  animate();
+}
+
+boot();
 
 // ─── Interaction ───
 function triggerShake() {
