@@ -1,26 +1,54 @@
 {
   "timezone": "Asia/Shanghai",
-  "generatedAt": "2026-02-10T16:00:34.289Z",
+  "generatedAt": "2026-02-11T16:00:46.069Z",
   "rows": [
     {
-      "date": "2026-02-11",
+      "date": "2026-02-12",
       "userMessages": 1,
-      "assistantMessages": 8,
-      "toolCalls": 8,
+      "assistantMessages": 6,
+      "toolCalls": 6,
       "toolUsage": {
-        "exec": 5,
-        "read": 2,
-        "edit": 1
+        "exec": 4,
+        "read": 1,
+        "write": 1
       },
-      "inputTokens": 9152,
-      "outputTokens": 620,
-      "totalTokens": 96172,
-      "costUsd": 0.039816000000000004,
-      "summary": "執行指令×5、讀取檔案×2、修改檔案×1",
+      "inputTokens": 10472,
+      "outputTokens": 835,
+      "totalTokens": 76459,
+      "costUsd": 0.04141759999999999,
+      "summary": "執行指令×4、讀取檔案×1、修改檔案×1",
       "summaryCounts": {
-        "讀取檔案": 2,
+        "讀取檔案": 1,
         "修改檔案": 1,
-        "執行指令": 5
+        "執行指令": 4
+      },
+      "tasks": []
+    },
+    {
+      "date": "2026-02-11",
+      "userMessages": 58,
+      "assistantMessages": 141,
+      "toolCalls": 92,
+      "toolUsage": {
+        "read": 19,
+        "exec": 16,
+        "process": 23,
+        "web_search": 4,
+        "browser": 25,
+        "edit": 2,
+        "cron": 3
+      },
+      "inputTokens": 497469,
+      "outputTokens": 10912,
+      "totalTokens": 2363613,
+      "costUsd": 1.3480043499999996,
+      "summary": "執行指令×39、查詢網頁×29、讀取檔案×19、排程/提醒×3、修改檔案×2",
+      "summaryCounts": {
+        "讀取檔案": 19,
+        "修改檔案": 2,
+        "執行指令": 39,
+        "查詢網頁": 29,
+        "排程/提醒": 3
       },
       "tasks": []
     },
@@ -175,138 +203,108 @@
         "系統/設定": 13
       },
       "tasks": []
-    },
-    {
-      "date": "2026-02-05",
-      "userMessages": 81,
-      "assistantMessages": 268,
-      "toolCalls": 195,
-      "toolUsage": {
-        "gateway": 5,
-        "exec": 69,
-        "read": 29,
-        "process": 31,
-        "write": 2,
-        "edit": 53,
-        "browser": 3,
-        "web_fetch": 2,
-        "memory_search": 1
-      },
-      "inputTokens": 4864341,
-      "outputTokens": 41666,
-      "totalTokens": 13414154,
-      "costUsd": 9.150952449999998,
-      "summary": "執行指令×100、修改檔案×55、讀取檔案×29、查詢網頁×5、系統/設定×5",
-      "summaryCounts": {
-        "讀取檔案": 29,
-        "修改檔案": 55,
-        "執行指令": 100,
-        "查詢網頁": 5,
-        "系統/設定": 5
-      },
-      "tasks": []
     }
   ],
   "recentActions": [
     {
-      "time": "2026/02/11 00:00",
+      "time": "2026/02/12 00:00",
       "tool": "exec",
       "summary": "exec: node build-data.mjs"
     },
     {
-      "time": "2026/02/11 00:00",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
+      "time": "2026/02/12 00:00",
+      "tool": "write",
+      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/11 00:00",
-      "tool": "exec",
-      "summary": "exec: git status -sb"
-    },
-    {
-      "time": "2026/02/11 00:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/memory/2026-02-10.md"
-    },
-    {
-      "time": "2026/02/11 00:00",
-      "tool": "exec",
-      "summary": "exec: ls memory"
-    },
-    {
-      "time": "2026/02/11 00:00",
+      "time": "2026/02/12 00:00",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/11 00:00",
+      "time": "2026/02/12 00:00",
       "tool": "exec",
-      "summary": "exec: ls data"
+      "summary": "exec: ls -la /Users/macos-utm/.openclaw/workspace/memory"
     },
     {
-      "time": "2026/02/11 00:00",
+      "time": "2026/02/12 00:00",
       "tool": "exec",
-      "summary": "exec: ls"
+      "summary": "exec: find /Users/macos-utm/.openclaw/workspace -maxdepth 3 -type f | grep -i telegra…"
     },
     {
-      "time": "2026/02/10 23:56",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+      "time": "2026/02/12 00:00",
+      "tool": "exec",
+      "summary": "exec: ls -la"
     },
     {
-      "time": "2026/02/10 23:26",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+      "time": "2026/02/11 15:55",
+      "tool": "browser",
+      "summary": "browser: snapshot"
     },
     {
-      "time": "2026/02/10 22:56",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+      "time": "2026/02/11 15:55",
+      "tool": "browser",
+      "summary": "browser: open https://www.goofish.com/search?q=mac%20mini%20m4"
     },
     {
-      "time": "2026/02/10 22:26",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+      "time": "2026/02/11 15:55",
+      "tool": "browser",
+      "summary": "browser: act"
     },
     {
-      "time": "2026/02/10 21:56",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+      "time": "2026/02/11 15:55",
+      "tool": "browser",
+      "summary": "browser: act"
     },
     {
-      "time": "2026/02/10 21:26",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+      "time": "2026/02/11 15:55",
+      "tool": "browser",
+      "summary": "browser: navigate https://tw.carousell.com/search/mac%20mini%20m4"
     },
     {
-      "time": "2026/02/10 21:26",
-      "tool": "process",
-      "summary": "process: {\"action\":\"poll\",\"sessionId\":\"salty-crustacean\"}"
+      "time": "2026/02/11 15:55",
+      "tool": "browser",
+      "summary": "browser: act"
     },
     {
-      "time": "2026/02/10 21:26",
-      "tool": "process",
-      "summary": "process: {\"action\":\"send-keys\",\"sessionId\":\"salty-crustacean\",\"keys\":[\"CTRL_C\"]}"
+      "time": "2026/02/11 15:55",
+      "tool": "browser",
+      "summary": "browser: act"
     },
     {
-      "time": "2026/02/10 21:26",
-      "tool": "process",
-      "summary": "process: {\"action\":\"poll\",\"sessionId\":\"salty-crustacean\"}"
+      "time": "2026/02/11 15:55",
+      "tool": "browser",
+      "summary": "browser: navigate https://tw.carousell.com/search/mac%20mini%20m4"
     },
     {
-      "time": "2026/02/10 21:26",
-      "tool": "process",
-      "summary": "process: {\"action\":\"send-keys\",\"sessionId\":\"salty-crustacean\",\"keys\":[\"ENTER\"]}"
+      "time": "2026/02/11 15:55",
+      "tool": "browser",
+      "summary": "browser: act"
     },
     {
-      "time": "2026/02/10 21:26",
-      "tool": "process",
-      "summary": "process: {\"action\":\"poll\",\"sessionId\":\"salty-crustacean\",\"offset\":0,\"limit\":2000}"
+      "time": "2026/02/11 15:55",
+      "tool": "browser",
+      "summary": "browser: act"
     },
     {
-      "time": "2026/02/10 21:26",
-      "tool": "process",
-      "summary": "process: {\"action\":\"poll\",\"sessionId\":\"salty-crustacean\"}"
+      "time": "2026/02/11 15:55",
+      "tool": "browser",
+      "summary": "browser: snapshot"
+    },
+    {
+      "time": "2026/02/11 15:54",
+      "tool": "browser",
+      "summary": "browser: open https://tw.carousell.com/search/mac%20mini%20m4"
+    },
+    {
+      "time": "2026/02/11 15:54",
+      "tool": "browser",
+      "summary": "browser: status"
+    },
+    {
+      "time": "2026/02/11 15:54",
+      "tool": "browser",
+      "summary": "browser: navigate https://tw.carousell.com/search/mac%20mini%20m4"
     }
   ],
   "todaySurprise": []
