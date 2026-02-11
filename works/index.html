@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>每日小作品</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f1a;
+      --panel: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #22d3ee;
+      --border: #1f2937;
+    }
+    body {
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 24px;
+      background: radial-gradient(1200px 700px at 10% -10%, #0ea5e9 0%, rgba(14,165,233,0) 60%),
+                  radial-gradient(900px 600px at 90% -20%, #22d3ee 0%, rgba(34,211,238,0) 55%),
+                  var(--bg);
+      color: var(--text);
+    }
+    a { color: var(--accent); }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+      background: rgba(17,24,39,0.92);
+    }
+    .date { color: var(--muted); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>每日小作品</h1>
+  <p class="date">每天 06:00 更新｜<a href="../index.html">回 OD</a></p>
+  <div id="list"></div>
+  <script>
+    async function main() {
+      const res = await fetch('../data/works.json');
+      const works = await res.json();
+      const list = document.getElementById('list');
+      if (!Array.isArray(works) || works.length === 0) {
+        list.innerHTML = '<div class="card">（尚未生成）</div>';
+        return;
+      }
+      works.forEach(w => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<div class="date">${w.date}</div><div><a href="./${w.slug}.html">${w.title}</a></div><div>${w.excerpt || ''}</div>`;
+        list.appendChild(div);
+      });
+    }
+    main();
+  </script>
+</body>
+</html>
