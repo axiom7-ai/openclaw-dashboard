@@ -83,10 +83,6 @@
 
   <div class="grid grid-notes">
     <div class="card">
-      <h3 style="margin:0 0 0.5rem;">每日任務</h3>
-      <ul id="tasks" class="list"></ul>
-    </div>
-    <div class="card">
       <h3 style="margin:0 0 0.5rem;">今日驚喜</h3>
       <ul id="todaySurprise" class="list"></ul>
     </div>
@@ -202,20 +198,6 @@
           <td>${c['裝置/畫布'] || 0}</td>
         `;
         summaryBody.appendChild(tr);
-      }
-
-      const tasksEl = document.getElementById('tasks');
-      const taskRows = rows.filter(r => Array.isArray(r.tasks) && r.tasks.length > 0);
-      if (taskRows.length === 0) {
-        const li = document.createElement('li');
-        li.textContent = '（尚未記錄）';
-        tasksEl.appendChild(li);
-      } else {
-        for (const r of taskRows) {
-          const li = document.createElement('li');
-          li.textContent = `${r.date} — ${r.tasks.join('、')}`;
-          tasksEl.appendChild(li);
-        }
       }
 
       const surpriseEl = document.getElementById('todaySurprise');

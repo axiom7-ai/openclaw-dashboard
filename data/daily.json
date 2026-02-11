@@ -1,28 +1,35 @@
 {
   "timezone": "Asia/Shanghai",
-  "generatedAt": "2026-02-11T16:00:46.069Z",
+  "generatedAt": "2026-02-11T18:37:12.635Z",
   "rows": [
     {
       "date": "2026-02-12",
-      "userMessages": 1,
-      "assistantMessages": 6,
-      "toolCalls": 6,
+      "userMessages": 26,
+      "assistantMessages": 77,
+      "toolCalls": 54,
       "toolUsage": {
-        "exec": 4,
-        "read": 1,
+        "web_search": 1,
+        "cron": 4,
+        "session_status": 2,
+        "memory_search": 1,
+        "exec": 28,
+        "read": 6,
+        "edit": 11,
         "write": 1
       },
-      "inputTokens": 10472,
-      "outputTokens": 835,
-      "totalTokens": 76459,
-      "costUsd": 0.04141759999999999,
-      "summary": "執行指令×4、讀取檔案×1、修改檔案×1",
+      "inputTokens": 858396,
+      "outputTokens": 11284,
+      "totalTokens": 3305520,
+      "costUsd": 2.0864409999999998,
+      "summary": "執行指令×28、修改檔案×12、讀取檔案×6、排程/提醒×4、系統/設定×2、查詢網頁×1",
       "summaryCounts": {
-        "讀取檔案": 1,
-        "修改檔案": 1,
-        "執行指令": 4
-      },
-      "tasks": []
+        "讀取檔案": 6,
+        "修改檔案": 12,
+        "執行指令": 28,
+        "查詢網頁": 1,
+        "排程/提醒": 4,
+        "系統/設定": 2
+      }
     },
     {
       "date": "2026-02-11",
@@ -49,8 +56,7 @@
         "執行指令": 39,
         "查詢網頁": 29,
         "排程/提醒": 3
-      },
-      "tasks": []
+      }
     },
     {
       "date": "2026-02-10",
@@ -81,8 +87,7 @@
         "查詢網頁": 2,
         "排程/提醒": 22,
         "系統/設定": 1
-      },
-      "tasks": []
+      }
     },
     {
       "date": "2026-02-09",
@@ -110,8 +115,7 @@
         "執行指令": 72,
         "排程/提醒": 1,
         "代理管理": 1
-      },
-      "tasks": []
+      }
     },
     {
       "date": "2026-02-08",
@@ -138,8 +142,7 @@
         "執行指令": 48,
         "排程/提醒": 1,
         "代理管理": 1
-      },
-      "tasks": []
+      }
     },
     {
       "date": "2026-02-07",
@@ -169,8 +172,7 @@
         "查詢網頁": 1,
         "排程/提醒": 2,
         "系統/設定": 3
-      },
-      "tasks": []
+      }
     },
     {
       "date": "2026-02-06",
@@ -201,110 +203,109 @@
         "查詢網頁": 35,
         "排程/提醒": 2,
         "系統/設定": 13
-      },
-      "tasks": []
+      }
     }
   ],
   "recentActions": [
     {
-      "time": "2026/02/12 00:00",
+      "time": "2026/02/12 02:37",
       "tool": "exec",
-      "summary": "exec: node build-data.mjs"
+      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard no…"
     },
     {
-      "time": "2026/02/12 00:00",
-      "tool": "write",
-      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
+      "time": "2026/02/12 02:37",
+      "tool": "exec",
+      "summary": "exec: set -euo pipefail python3 - <<'PY' from pathlib import Path p=Path('/Users/maco…"
     },
     {
-      "time": "2026/02/12 00:00",
+      "time": "2026/02/12 02:36",
       "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
     },
     {
-      "time": "2026/02/12 00:00",
+      "time": "2026/02/12 02:36",
       "tool": "exec",
-      "summary": "exec: ls -la /Users/macos-utm/.openclaw/workspace/memory"
+      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard no…"
     },
     {
-      "time": "2026/02/12 00:00",
+      "time": "2026/02/12 02:36",
       "tool": "exec",
-      "summary": "exec: find /Users/macos-utm/.openclaw/workspace -maxdepth 3 -type f | grep -i telegra…"
+      "summary": "exec: set -euo pipefail python3 - <<'PY' from pathlib import Path p=Path('/Users/maco…"
     },
     {
-      "time": "2026/02/12 00:00",
+      "time": "2026/02/12 02:36",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
+    },
+    {
+      "time": "2026/02/12 02:36",
       "tool": "exec",
-      "summary": "exec: ls -la"
+      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard no…"
     },
     {
-      "time": "2026/02/11 15:55",
-      "tool": "browser",
-      "summary": "browser: snapshot"
+      "time": "2026/02/12 02:36",
+      "tool": "exec",
+      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard rm…"
     },
     {
-      "time": "2026/02/11 15:55",
-      "tool": "browser",
-      "summary": "browser: open https://www.goofish.com/search?q=mac%20mini%20m4"
+      "time": "2026/02/12 02:36",
+      "tool": "exec",
+      "summary": "exec: set -euo pipefail python3 - <<'PY' from pathlib import Path p=Path('/Users/maco…"
     },
     {
-      "time": "2026/02/11 15:55",
-      "tool": "browser",
-      "summary": "browser: act"
+      "time": "2026/02/12 02:36",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
     },
     {
-      "time": "2026/02/11 15:55",
-      "tool": "browser",
-      "summary": "browser: act"
+      "time": "2026/02/12 02:36",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
     },
     {
-      "time": "2026/02/11 15:55",
-      "tool": "browser",
-      "summary": "browser: navigate https://tw.carousell.com/search/mac%20mini%20m4"
+      "time": "2026/02/12 02:36",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
     },
     {
-      "time": "2026/02/11 15:55",
-      "tool": "browser",
-      "summary": "browser: act"
+      "time": "2026/02/12 02:36",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
     },
     {
-      "time": "2026/02/11 15:55",
-      "tool": "browser",
-      "summary": "browser: act"
+      "time": "2026/02/12 02:36",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
     },
     {
-      "time": "2026/02/11 15:55",
-      "tool": "browser",
-      "summary": "browser: navigate https://tw.carousell.com/search/mac%20mini%20m4"
+      "time": "2026/02/12 02:35",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
     },
     {
-      "time": "2026/02/11 15:55",
-      "tool": "browser",
-      "summary": "browser: act"
+      "time": "2026/02/12 02:35",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
     },
     {
-      "time": "2026/02/11 15:55",
-      "tool": "browser",
-      "summary": "browser: act"
+      "time": "2026/02/12 02:35",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
     },
     {
-      "time": "2026/02/11 15:55",
-      "tool": "browser",
-      "summary": "browser: snapshot"
+      "time": "2026/02/12 02:35",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/index.html"
     },
     {
-      "time": "2026/02/11 15:54",
-      "tool": "browser",
-      "summary": "browser: open https://tw.carousell.com/search/mac%20mini%20m4"
+      "time": "2026/02/12 02:35",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/index.html"
     },
     {
-      "time": "2026/02/11 15:54",
-      "tool": "browser",
-      "summary": "browser: status"
-    },
-    {
-      "time": "2026/02/11 15:54",
-      "tool": "browser",
-      "summary": "browser: navigate https://tw.carousell.com/search/mac%20mini%20m4"
+      "time": "2026/02/12 02:31",
+      "tool": "exec",
+      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard gi…"
     }
   ],
   "todaySurprise": []
