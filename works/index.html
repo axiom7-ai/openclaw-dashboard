@@ -8,35 +8,97 @@
     :root {
       color-scheme: dark;
       --bg: #0b0f1a;
-      --panel: #111827;
+      --panel: rgba(17,24,39,0.85);
+      --panel-2: rgba(15,23,42,0.9);
       --text: #e5e7eb;
       --muted: #9ca3af;
-      --accent: #22d3ee;
+      --accent: #60a5fa;
+      --accent-2: #f472b6;
       --border: #1f2937;
+      --glow: 0 0 24px rgba(96, 165, 250, 0.2);
     }
+    * { box-sizing: border-box; }
     body {
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      margin: 24px;
-      background: radial-gradient(1200px 700px at 10% -10%, #0ea5e9 0%, rgba(14,165,233,0) 60%),
-                  radial-gradient(900px 600px at 90% -20%, #22d3ee 0%, rgba(34,211,238,0) 55%),
-                  var(--bg);
+      margin: 0;
+      padding: 32px 20px 48px;
+      background:
+        radial-gradient(1200px 700px at 10% -10%, #0ea5e9 0%, rgba(14,165,233,0) 60%),
+        radial-gradient(1000px 700px at 90% -20%, #a78bfa 0%, rgba(167,139,250,0) 55%),
+        radial-gradient(900px 600px at 50% 120%, #f472b6 0%, rgba(244,114,182,0) 55%),
+        var(--bg);
       color: var(--text);
+      min-height: 100vh;
     }
-    a { color: var(--accent); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      max-width: 980px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 1.8rem;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .sub { color: var(--muted); font-size: 0.95rem; }
+
+    .grid {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
     .card {
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 16px;
-      background: rgba(17,24,39,0.92);
+      border-radius: 16px;
+      padding: 16px 18px;
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      box-shadow: var(--glow);
+      transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease;
     }
-    .date { color: var(--muted); font-size: 0.9rem; }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(96,165,250,.45);
+      box-shadow: 0 0 26px rgba(96,165,250,0.25);
+    }
+    .date { color: var(--muted); font-size: 0.85rem; margin-bottom: 6px; }
+    .title-link { font-size: 1.05rem; font-weight: 600; display: inline-block; margin-bottom: 6px; }
+    .excerpt { color: #d1d5db; font-size: 0.95rem; line-height: 1.6; }
+    .pill {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(96,165,250,.35);
+      color: #c7d2fe;
+      font-size: 0.8rem;
+      background: rgba(96,165,250,0.12);
+    }
   </style>
 </head>
 <body>
-  <h1>每日小作品</h1>
-  <p class="date">每天 06:00 更新｜<a href="../index.html">回 OD</a></p>
-  <div id="list"></div>
+  <header>
+    <div>
+      <div class="title">每日小作品</div>
+      <div class="sub">每天 06:00 更新｜<a href="../index.html">回 OD</a></div>
+    </div>
+    <div class="pill">✨ 每日一則</div>
+  </header>
+
+  <section class="grid" id="list"></section>
+
   <script>
     async function main() {
       const res = await fetch('../data/works.json');
@@ -49,7 +111,11 @@
       works.forEach(w => {
         const div = document.createElement('div');
         div.className = 'card';
-        div.innerHTML = `<div class="date">${w.date}</div><div><a href="./${w.slug}.html">${w.title}</a></div><div>${w.excerpt || ''}</div>`;
+        div.innerHTML = `
+          <div class="date">${w.date}</div>
+          <a class="title-link" href="./${w.slug}.html">${w.title}</a>
+          <div class="excerpt">${w.excerpt || ''}</div>
+        `;
         list.appendChild(div);
       });
     }
