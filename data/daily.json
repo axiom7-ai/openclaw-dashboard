@@ -1,33 +1,33 @@
 {
   "timezone": "Asia/Shanghai",
-  "generatedAt": "2026-02-11T18:37:12.635Z",
+  "generatedAt": "2026-02-12T03:21:11.484Z",
   "rows": [
     {
       "date": "2026-02-12",
-      "userMessages": 26,
-      "assistantMessages": 77,
-      "toolCalls": 54,
+      "userMessages": 49,
+      "assistantMessages": 120,
+      "toolCalls": 79,
       "toolUsage": {
         "web_search": 1,
-        "cron": 4,
+        "cron": 6,
         "session_status": 2,
         "memory_search": 1,
-        "exec": 28,
-        "read": 6,
-        "edit": 11,
-        "write": 1
+        "exec": 35,
+        "read": 15,
+        "edit": 14,
+        "write": 5
       },
-      "inputTokens": 858396,
-      "outputTokens": 11284,
-      "totalTokens": 3305520,
-      "costUsd": 2.0864409999999998,
-      "summary": "執行指令×28、修改檔案×12、讀取檔案×6、排程/提醒×4、系統/設定×2、查詢網頁×1",
+      "inputTokens": 1375678,
+      "outputTokens": 22945,
+      "totalTokens": 4778847,
+      "costUsd": 3.320205699999999,
+      "summary": "執行指令×35、修改檔案×19、讀取檔案×15、排程/提醒×6、系統/設定×2、查詢網頁×1",
       "summaryCounts": {
-        "讀取檔案": 6,
-        "修改檔案": 12,
-        "執行指令": 28,
+        "讀取檔案": 15,
+        "修改檔案": 19,
+        "執行指令": 35,
         "查詢網頁": 1,
-        "排程/提醒": 4,
+        "排程/提醒": 6,
         "系統/設定": 2
       }
     },
@@ -208,105 +208,107 @@
   ],
   "recentActions": [
     {
-      "time": "2026/02/12 02:37",
+      "time": "2026/02/12 11:21",
       "tool": "exec",
       "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard no…"
     },
     {
-      "time": "2026/02/12 02:37",
-      "tool": "exec",
-      "summary": "exec: set -euo pipefail python3 - <<'PY' from pathlib import Path p=Path('/Users/maco…"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "exec",
-      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard no…"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "exec",
-      "summary": "exec: set -euo pipefail python3 - <<'PY' from pathlib import Path p=Path('/Users/maco…"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "exec",
-      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard no…"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "exec",
-      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard rm…"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "exec",
-      "summary": "exec: set -euo pipefail python3 - <<'PY' from pathlib import Path p=Path('/Users/maco…"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
-    },
-    {
-      "time": "2026/02/12 02:36",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
-    },
-    {
-      "time": "2026/02/12 02:35",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
-    },
-    {
-      "time": "2026/02/12 02:35",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
-    },
-    {
-      "time": "2026/02/12 02:35",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
-    },
-    {
-      "time": "2026/02/12 02:35",
+      "time": "2026/02/12 11:20",
       "tool": "edit",
       "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/index.html"
     },
     {
-      "time": "2026/02/12 02:35",
+      "time": "2026/02/12 11:20",
       "tool": "edit",
       "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/index.html"
     },
     {
-      "time": "2026/02/12 02:31",
+      "time": "2026/02/12 11:18",
+      "tool": "exec",
+      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard DA…"
+    },
+    {
+      "time": "2026/02/12 11:15",
+      "tool": "cron",
+      "summary": "cron: update"
+    },
+    {
+      "time": "2026/02/12 06:00",
+      "tool": "exec",
+      "summary": "exec: git add data/star-jar.json data/surprise.json data/works.json works/2026-02-12.…"
+    },
+    {
+      "time": "2026/02/12 06:00",
+      "tool": "write",
+      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/data/star-jar.json"
+    },
+    {
+      "time": "2026/02/12 06:00",
+      "tool": "write",
+      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/data/surprise.json"
+    },
+    {
+      "time": "2026/02/12 06:00",
+      "tool": "write",
+      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/data/works.json"
+    },
+    {
+      "time": "2026/02/12 06:00",
+      "tool": "write",
+      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/works/2026-02-12.html"
+    },
+    {
+      "time": "2026/02/12 06:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/star-jar.json"
+    },
+    {
+      "time": "2026/02/12 06:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/surprise.json"
+    },
+    {
+      "time": "2026/02/12 06:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/works.json"
+    },
+    {
+      "time": "2026/02/12 04:01",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/12 04:01",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/MEMORY.md"
+    },
+    {
+      "time": "2026/02/12 04:01",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/memory/2026-02-11.md"
+    },
+    {
+      "time": "2026/02/12 04:01",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/memory/2026-02-12.md"
+    },
+    {
+      "time": "2026/02/12 04:01",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/USER.md"
+    },
+    {
+      "time": "2026/02/12 04:01",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/SOUL.md"
+    },
+    {
+      "time": "2026/02/12 02:40",
       "tool": "exec",
       "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard gi…"
     }
   ],
-  "todaySurprise": []
+  "todaySurprise": [
+    "今天也在你背後把燈打亮，放心往前走。"
+  ]
 }

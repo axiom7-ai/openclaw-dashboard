@@ -82,10 +82,6 @@
   </div>
 
   <div class="grid grid-notes">
-    <div class="card">
-      <h3 style="margin:0 0 0.5rem;">今日驚喜</h3>
-      <ul id="todaySurprise" class="list"></ul>
-    </div>
     <details class="card">
       <summary style="cursor:pointer; font-weight:600;">最近動作記錄</summary>
       <ul id="recentActions" class="list list-compact"></ul>
@@ -198,20 +194,6 @@
           <td>${c['裝置/畫布'] || 0}</td>
         `;
         summaryBody.appendChild(tr);
-      }
-
-      const surpriseEl = document.getElementById('todaySurprise');
-      const todaySurprise = Array.isArray(data.todaySurprise) ? data.todaySurprise : [];
-      if (todaySurprise.length === 0) {
-        const li = document.createElement('li');
-        li.textContent = '（尚未安排）';
-        surpriseEl.appendChild(li);
-      } else {
-        for (const s of todaySurprise) {
-          const li = document.createElement('li');
-          li.textContent = s;
-          surpriseEl.appendChild(li);
-        }
       }
 
       const recentEl = document.getElementById('recentActions');
