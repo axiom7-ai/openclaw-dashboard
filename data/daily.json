@@ -1,29 +1,50 @@
 {
   "timezone": "Asia/Shanghai",
-  "generatedAt": "2026-02-12T03:21:11.484Z",
+  "generatedAt": "2026-02-12T16:00:58.296Z",
   "rows": [
     {
+      "date": "2026-02-13",
+      "userMessages": 1,
+      "assistantMessages": 13,
+      "toolCalls": 13,
+      "toolUsage": {
+        "read": 8,
+        "exec": 4,
+        "write": 1
+      },
+      "inputTokens": 14533,
+      "outputTokens": 981,
+      "totalTokens": 173594,
+      "costUsd": 0.06683075,
+      "summary": "讀取檔案×8、執行指令×4、修改檔案×1",
+      "summaryCounts": {
+        "讀取檔案": 8,
+        "修改檔案": 1,
+        "執行指令": 4
+      }
+    },
+    {
       "date": "2026-02-12",
-      "userMessages": 49,
-      "assistantMessages": 120,
-      "toolCalls": 79,
+      "userMessages": 74,
+      "assistantMessages": 157,
+      "toolCalls": 90,
       "toolUsage": {
         "web_search": 1,
         "cron": 6,
         "session_status": 2,
         "memory_search": 1,
         "exec": 35,
-        "read": 15,
+        "read": 26,
         "edit": 14,
         "write": 5
       },
-      "inputTokens": 1375678,
-      "outputTokens": 22945,
-      "totalTokens": 4778847,
-      "costUsd": 3.320205699999999,
-      "summary": "執行指令×35、修改檔案×19、讀取檔案×15、排程/提醒×6、系統/設定×2、查詢網頁×1",
+      "inputTokens": 1662747,
+      "outputTokens": 23884,
+      "totalTokens": 5364455,
+      "costUsd": 3.8878024500000006,
+      "summary": "執行指令×35、讀取檔案×26、修改檔案×19、排程/提醒×6、系統/設定×2、查詢網頁×1",
       "summaryCounts": {
-        "讀取檔案": 15,
+        "讀取檔案": 26,
         "修改檔案": 19,
         "執行指令": 35,
         "查詢網頁": 1,
@@ -173,142 +194,109 @@
         "排程/提醒": 2,
         "系統/設定": 3
       }
-    },
-    {
-      "date": "2026-02-06",
-      "userMessages": 103,
-      "assistantMessages": 286,
-      "toolCalls": 194,
-      "toolUsage": {
-        "read": 54,
-        "gateway": 13,
-        "exec": 46,
-        "memory_search": 1,
-        "cron": 2,
-        "web_search": 7,
-        "web_fetch": 15,
-        "process": 29,
-        "edit": 14,
-        "browser": 13
-      },
-      "inputTokens": 3955783,
-      "outputTokens": 42583,
-      "totalTokens": 15464094,
-      "costUsd": 9.0707379,
-      "summary": "執行指令×75、讀取檔案×54、查詢網頁×35、修改檔案×14、系統/設定×13、排程/提醒×2",
-      "summaryCounts": {
-        "讀取檔案": 54,
-        "修改檔案": 14,
-        "執行指令": 75,
-        "查詢網頁": 35,
-        "排程/提醒": 2,
-        "系統/設定": 13
-      }
     }
   ],
   "recentActions": [
     {
-      "time": "2026/02/12 11:21",
+      "time": "2026/02/13 00:00",
       "tool": "exec",
-      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard no…"
+      "summary": "exec: node build-data.mjs"
     },
     {
-      "time": "2026/02/12 11:20",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/index.html"
+      "time": "2026/02/13 00:00",
+      "tool": "write",
+      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/12 11:20",
-      "tool": "edit",
-      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/index.html"
+      "time": "2026/02/13 00:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/build-data.mjs"
     },
     {
-      "time": "2026/02/12 11:18",
+      "time": "2026/02/13 00:00",
       "tool": "exec",
-      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard DA…"
+      "summary": "exec: ls -la /Users/macos-utm/.openclaw/workspace/openclaw-dashboard/data"
     },
     {
-      "time": "2026/02/12 11:15",
-      "tool": "cron",
-      "summary": "cron: update"
+      "time": "2026/02/13 00:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/12 06:00",
+      "time": "2026/02/13 00:00",
       "tool": "exec",
-      "summary": "exec: git add data/star-jar.json data/surprise.json data/works.json works/2026-02-12.…"
+      "summary": "exec: ls -la /Users/macos-utm/.openclaw/workspace/openclaw-dashboard"
     },
     {
-      "time": "2026/02/12 06:00",
-      "tool": "write",
-      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/data/star-jar.json"
+      "time": "2026/02/13 00:00",
+      "tool": "exec",
+      "summary": "exec: ls"
     },
     {
-      "time": "2026/02/12 06:00",
-      "tool": "write",
-      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/data/surprise.json"
-    },
-    {
-      "time": "2026/02/12 06:00",
-      "tool": "write",
-      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/data/works.json"
-    },
-    {
-      "time": "2026/02/12 06:00",
-      "tool": "write",
-      "summary": "write: ~/.openclaw/workspace/openclaw-dashboard/works/2026-02-12.html"
-    },
-    {
-      "time": "2026/02/12 06:00",
+      "time": "2026/02/13 00:00",
       "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/star-jar.json"
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/12 06:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/surprise.json"
-    },
-    {
-      "time": "2026/02/12 06:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/works.json"
-    },
-    {
-      "time": "2026/02/12 04:01",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/12 04:01",
+      "time": "2026/02/13 00:00",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/MEMORY.md"
     },
     {
-      "time": "2026/02/12 04:01",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/memory/2026-02-11.md"
-    },
-    {
-      "time": "2026/02/12 04:01",
+      "time": "2026/02/13 00:00",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/memory/2026-02-12.md"
     },
     {
-      "time": "2026/02/12 04:01",
+      "time": "2026/02/13 00:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/memory/2026-02-13.md"
+    },
+    {
+      "time": "2026/02/13 00:00",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/USER.md"
     },
     {
-      "time": "2026/02/12 04:01",
+      "time": "2026/02/13 00:00",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/SOUL.md"
     },
     {
-      "time": "2026/02/12 02:40",
-      "tool": "exec",
-      "summary": "exec: set -euo pipefail cd /Users/macos-utm/.openclaw/workspace/openclaw-dashboard gi…"
+      "time": "2026/02/12 21:01",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/12 20:01",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/12 19:31",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/12 18:31",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/12 17:31",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/12 16:01",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/12 15:31",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     }
   ],
-  "todaySurprise": [
-    "今天也在你背後把燈打亮，放心往前走。"
-  ]
+  "todaySurprise": []
 }
