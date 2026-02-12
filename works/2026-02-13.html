@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>口袋裡的紙船</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0b0f1a; --text:#e5e7eb; --muted:#9ca3af; --accent:#60a5fa; --accent2:#f472b6; --border:#1f2937; }
+    *{box-sizing:border-box;}
+    body{margin:0;min-height:100vh;font-family:"SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);
+      background:radial-gradient(1200px 700px at 10% -10%, #0ea5e9 0%, rgba(14,165,233,0) 60%),
+                 radial-gradient(1000px 700px at 90% -20%, #a78bfa 0%, rgba(167,139,250,0) 55%),
+                 radial-gradient(900px 600px at 50% 120%, #f472b6 0%, rgba(244,114,182,0) 55%),
+                 var(--bg);}
+    a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+    header{max-width:900px;margin:24px auto 10px;padding:0 20px;}
+    h1{margin:0;font-size:1.7rem;letter-spacing:.4px;background:linear-gradient(135deg,#fff 0%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .sub{color:var(--muted);font-size:.95rem;margin-top:6px;}
+    .stage{max-width:900px;margin:14px auto 40px;padding:0 20px;}
+    .card{border:1px solid var(--border);border-radius:18px;padding:18px;background:rgba(17,24,39,.9);box-shadow:0 0 24px rgba(96,165,250,.2);} 
+    .meta{color:var(--muted);font-size:.85rem;margin-bottom:10px;}
+    .content{line-height:1.8;white-space:pre-wrap;}
+
+    .spark-wrap{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;}
+    .spark{cursor:pointer;padding:8px 12px;border-radius:999px;border:1px solid rgba(96,165,250,.35);background:rgba(96,165,250,.12);color:#c7d2fe;transition:.2s;}
+    .spark:hover{transform:translateY(-2px);border-color:rgba(244,114,182,.6);box-shadow:0 0 18px rgba(244,114,182,.25);} 
+
+    .orb{position:relative;margin:18px auto 0;width:220px;height:220px;border-radius:50%;border:1px solid rgba(96,165,250,.35);
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), rgba(96,165,250,.05));
+      box-shadow:0 0 40px rgba(96,165,250,.15) inset, 0 0 30px rgba(96,165,250,.25);
+      display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;}
+    .orb span{transition:.2s;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>口袋裡的紙船</h1>
+    <div class="sub">2026-02-13｜<a href="./index.html">回每日小作品</a> ｜ <a href="../index.html">回 OD</a></div>
+  </header>
+
+  <section class="stage">
+    <div class="card">
+      <div class="meta">今天的小作品</div>
+      <div class="content">你起身的時候，風還在打呵欠
+我把昨天的疲憊摺成小船
+放進你的口袋，提醒你
+今天也可以慢慢航行</div>
+
+      <div class="spark-wrap" id="sparks"></div>
+
+      <div class="orb" id="orb"><span>點一下我</span></div>
+    </div>
+  </section>
+
+  <script>
+    const sparks = [
+      '點一下，換一種心情',
+      '今天也有小小進度',
+      '慢慢來就很好',
+      '休息也是前進',
+      '你已經很努力了'
+    ];
+    const orbTexts = [
+      '今天的你，剛剛好。',
+      '小作品已收好。',
+      '記得喝水。',
+      '深呼吸三次。',
+      '我在這裡。'
+    ];
+
+    const wrap = document.getElementById('sparks');
+    sparks.forEach((s) => {
+      const b = document.createElement('button');
+      b.className = 'spark';
+      b.textContent = s;
+      b.addEventListener('click', () => {
+        b.textContent = '✨ ' + orbTexts[Math.floor(Math.random()*orbTexts.length)];
+      });
+      wrap.appendChild(b);
+    });
+
+    const orb = document.getElementById('orb');
+    const orbSpan = orb.querySelector('span');
+    orb.addEventListener('click', () => {
+      orbSpan.textContent = orbTexts[Math.floor(Math.random()*orbTexts.length)];
+      orb.style.transform = 'scale(1.03)';
+      setTimeout(() => orb.style.transform = 'scale(1)', 150);
+    });
+  </script>
+</body>
+</html>
