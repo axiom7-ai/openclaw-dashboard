@@ -1,24 +1,48 @@
 {
   "timezone": "Asia/Shanghai",
-  "generatedAt": "2026-02-15T16:00:17.917Z",
+  "generatedAt": "2026-02-16T16:00:25.704Z",
   "rows": [
     {
-      "date": "2026-02-16",
+      "date": "2026-02-17",
       "userMessages": 1,
-      "assistantMessages": 4,
+      "assistantMessages": 8,
       "toolCalls": 8,
       "toolUsage": {
         "read": 6,
-        "exec": 2
+        "edit": 1,
+        "exec": 1
       },
-      "inputTokens": 10405,
-      "outputTokens": 664,
-      "totalTokens": 50749,
-      "costUsd": 0.03444875,
-      "summary": "讀取檔案×6、執行指令×2",
+      "inputTokens": 23501,
+      "outputTokens": 686,
+      "totalTokens": 100475,
+      "costUsd": 0.06408114999999999,
+      "summary": "讀取檔案×6、修改檔案×1、執行指令×1",
       "summaryCounts": {
         "讀取檔案": 6,
-        "執行指令": 2
+        "修改檔案": 1,
+        "執行指令": 1
+      }
+    },
+    {
+      "date": "2026-02-16",
+      "userMessages": 64,
+      "assistantMessages": 107,
+      "toolCalls": 55,
+      "toolUsage": {
+        "read": 22,
+        "web_search": 2,
+        "exec": 27,
+        "web_fetch": 4
+      },
+      "inputTokens": 2079506,
+      "outputTokens": 30938,
+      "totalTokens": 6138652,
+      "costUsd": 4.829845500000002,
+      "summary": "執行指令×27、讀取檔案×22、查詢網頁×6",
+      "summaryCounts": {
+        "讀取檔案": 22,
+        "執行指令": 27,
+        "查詢網頁": 6
       }
     },
     {
@@ -151,139 +175,108 @@
         "查詢網頁": 29,
         "排程/提醒": 3
       }
-    },
-    {
-      "date": "2026-02-10",
-      "userMessages": 49,
-      "assistantMessages": 193,
-      "toolCalls": 113,
-      "toolUsage": {
-        "memory_search": 2,
-        "cron": 22,
-        "exec": 14,
-        "web_fetch": 1,
-        "read": 21,
-        "write": 2,
-        "browser": 1,
-        "edit": 10,
-        "gateway": 1,
-        "process": 39
-      },
-      "inputTokens": 1341446,
-      "outputTokens": 30375,
-      "totalTokens": 7138987,
-      "costUsd": 4.373963849999999,
-      "summary": "執行指令×53、排程/提醒×22、讀取檔案×21、修改檔案×12、查詢網頁×2、系統/設定×1",
-      "summaryCounts": {
-        "讀取檔案": 21,
-        "修改檔案": 12,
-        "執行指令": 53,
-        "查詢網頁": 2,
-        "排程/提醒": 22,
-        "系統/設定": 1
-      }
     }
   ],
   "recentActions": [
     {
-      "time": "2026/02/16 00:00",
+      "time": "2026/02/17 00:00",
       "tool": "exec",
       "summary": "exec: node build-data.mjs"
     },
     {
-      "time": "2026/02/16 00:00",
-      "tool": "exec",
-      "summary": "exec: node -e \"const fs=require('fs');const p='openclaw-dashboard/data/tasks.json';co…"
+      "time": "2026/02/17 00:00",
+      "tool": "edit",
+      "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/16 00:00",
+      "time": "2026/02/17 00:00",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/16 00:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/SOUL.md"
-    },
-    {
-      "time": "2026/02/16 00:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/USER.md"
-    },
-    {
-      "time": "2026/02/16 00:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/memory/2026-02-16.md"
-    },
-    {
-      "time": "2026/02/16 00:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/memory/2026-02-15.md"
-    },
-    {
-      "time": "2026/02/16 00:00",
+      "time": "2026/02/17 00:00",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/MEMORY.md"
     },
     {
-      "time": "2026/02/15 23:37",
-      "tool": "gateway",
-      "summary": "gateway: {\"action\":\"restart\",\"reason\":\"Apply OpenClaw update 2026.2.14\"}"
+      "time": "2026/02/17 00:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/memory/2026-02-16.md"
     },
     {
-      "time": "2026/02/15 23:35",
-      "tool": "gateway",
-      "summary": "gateway: {\"action\":\"update.run\",\"timeoutMs\":60000}"
+      "time": "2026/02/17 00:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/memory/2026-02-17.md"
     },
     {
-      "time": "2026/02/15 23:35",
-      "tool": "gateway",
-      "summary": "gateway: {\"action\":\"update.run\"}"
+      "time": "2026/02/17 00:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/USER.md"
     },
     {
-      "time": "2026/02/15 19:45",
+      "time": "2026/02/17 00:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/SOUL.md"
+    },
+    {
+      "time": "2026/02/16 19:30",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/15 16:45",
+      "time": "2026/02/16 18:00",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/15 15:15",
+      "time": "2026/02/16 16:30",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/15 10:36",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/15 09:36",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/15 09:06",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/15 08:06",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/15 06:00",
+      "time": "2026/02/16 15:14",
       "tool": "exec",
-      "summary": "exec: git push"
+      "summary": "exec: set -euo pipefail NOTION_KEY=$(cat ~/.config/notion/api_key) DB_ID='2f80062c-2a…"
     },
     {
-      "time": "2026/02/15 06:00",
+      "time": "2026/02/16 14:44",
       "tool": "exec",
-      "summary": "exec: git commit -m \"Update daily work for 2026-02-15\""
+      "summary": "exec: set -euo pipefail NOTION_KEY=$(cat ~/.config/notion/api_key) DB_ID='2f80062c-2a…"
+    },
+    {
+      "time": "2026/02/16 14:33",
+      "tool": "exec",
+      "summary": "exec: set -euo pipefail NOTION_KEY=$(cat ~/.config/notion/api_key) PAGE_ID='3090062c-…"
+    },
+    {
+      "time": "2026/02/16 13:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/16 12:47",
+      "tool": "exec",
+      "summary": "exec: set -euo pipefail NOTION_KEY=$(cat ~/.config/notion/api_key) PAGE_ID='3090062c-…"
+    },
+    {
+      "time": "2026/02/16 12:46",
+      "tool": "exec",
+      "summary": "exec: set -euo pipefail NOTION_KEY=$(cat ~/.config/notion/api_key) PAGE_ID='3090062c-…"
+    },
+    {
+      "time": "2026/02/16 12:45",
+      "tool": "exec",
+      "summary": "exec: set -euo pipefail NOTION_KEY=$(cat ~/.config/notion/api_key) PAGE_ID='3090062c-…"
+    },
+    {
+      "time": "2026/02/16 12:45",
+      "tool": "exec",
+      "summary": "exec: set -euo pipefail NOTION_KEY=$(cat ~/.config/notion/api_key) PAGE_ID='3090062c-…"
+    },
+    {
+      "time": "2026/02/16 12:44",
+      "tool": "exec",
+      "summary": "exec: set -euo pipefail NOTION_KEY=$(cat ~/.config/notion/api_key) PAGE_ID='3090062c-…"
     }
   ],
   "todaySurprise": []
