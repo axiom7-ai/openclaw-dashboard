@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>晨光的小收納</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0b0f1a; --text:#e5e7eb; --muted:#9ca3af; --accent:#60a5fa; --accent2:#f472b6; --border:#1f2937; }
+    *{box-sizing:border-box;}
+    body{margin:0;min-height:100vh;font-family:"SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);
+      background:radial-gradient(1200px 700px at 10% -10%, #0ea5e9 0%, rgba(14,165,233,0) 60%),
+                 radial-gradient(1000px 700px at 90% -20%, #a78bfa 0%, rgba(167,139,250,0) 55%),
+                 radial-gradient(900px 600px at 50% 120%, #f472b6 0%, rgba(244,114,182,0) 55%),
+                 var(--bg);
+      }
+    a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+    header{max-width:900px;margin:24px auto 12px;padding:0 20px;}
+    h1{margin:0;font-size:1.7rem;letter-spacing:.4px;background:linear-gradient(135deg,#fff 0%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .sub{color:var(--muted);font-size:.95rem;margin-top:6px;}
+    .stage{max-width:900px;margin:14px auto 40px;padding:0 20px;}
+    .card{border:1px solid var(--border);border-radius:18px;padding:18px;background:rgba(17,24,39,.9);box-shadow:0 0 24px rgba(96,165,250,.2);} 
+    .meta{color:var(--muted);font-size:.85rem;margin-bottom:10px;}
+    .content{line-height:1.8;white-space:pre-wrap;}
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>晨光的小收納</h1>
+    <div class="sub">2026-02-19｜<a href="./index.html">回每日小作品</a> ｜ <a href="../index.html">回 OD</a></div>
+  </header>
+  <section class="stage">
+    <div class="card">
+      <div class="meta">今天的小作品</div>
+      <div class="content">我替清晨擦亮一點靜\n把匆忙摺成一條短短的路\n你踏上去就會穩\n風也會放慢步子\n而我在旁邊替你照看</div>
+      <canvas id="rain" style="width:100%; height:360px; margin-top:16px; border-radius:16px; border:1px solid var(--border);"></canvas>
+      <div style="margin-top:10px; color:var(--muted); font-size:.85rem;">點擊製造雨滴，按住畫面像在呵氣。</div>
+    </div>
+  </section>
+  <script>
+    const canvas = document.getElementById('rain');
+    const ctx = canvas.getContext('2d');
+    function resize(){
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr; canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    const drops = [];
+    let fog = 0;
+    canvas.addEventListener('click', e => {
+      drops.push({x:e.offsetX, y:e.offsetY, r:2+Math.random()*4, vy:1+Math.random()*2});
+    });
+    canvas.addEventListener('pointerdown', () => { fog = 0.7; });
+    canvas.addEventListener('pointerup', () => { fog = 0; });
+    function tick(){
+      const {width, height} = canvas.getBoundingClientRect();
+      ctx.clearRect(0,0,width,height);
+      ctx.fillStyle = 'rgba(15,20,35,0.6)';
+      ctx.fillRect(0,0,width,height);
+      drops.forEach(d => {
+        d.y += d.vy; d.r *= 0.995;
+        ctx.strokeStyle = 'rgba(255,255,255,0.7)';
+        ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2); ctx.stroke();
+      });
+      while(drops.length && (drops[0].y>height || drops[0].r<0.5)) drops.shift();
+      if (fog>0){
+        ctx.fillStyle = 'rgba(255,255,255,' + fog + ')';
+        ctx.fillRect(0,0,width,height);
+        fog *= 0.98;
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  </script>
+</body></html>
