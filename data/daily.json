@@ -1,26 +1,47 @@
 {
   "timezone": "Asia/Shanghai",
-  "generatedAt": "2026-02-19T16:00:29.491Z",
+  "generatedAt": "2026-02-20T16:00:22.228Z",
   "rows": [
     {
-      "date": "2026-02-20",
+      "date": "2026-02-21",
       "userMessages": 1,
       "assistantMessages": 5,
-      "toolCalls": 9,
+      "toolCalls": 5,
       "toolUsage": {
-        "exec": 2,
-        "read": 6,
+        "exec": 4,
         "edit": 1
       },
-      "inputTokens": 10191,
-      "outputTokens": 891,
-      "totalTokens": 64330,
-      "costUsd": 0.03962665,
-      "summary": "讀取檔案×6、執行指令×2、修改檔案×1",
+      "inputTokens": 9209,
+      "outputTokens": 508,
+      "totalTokens": 62965,
+      "costUsd": 0.032546149999999996,
+      "summary": "執行指令×4、修改檔案×1",
       "summaryCounts": {
-        "讀取檔案": 6,
         "修改檔案": 1,
-        "執行指令": 2
+        "執行指令": 4
+      }
+    },
+    {
+      "date": "2026-02-20",
+      "userMessages": 50,
+      "assistantMessages": 76,
+      "toolCalls": 32,
+      "toolUsage": {
+        "read": 17,
+        "exec": 13,
+        "edit": 1,
+        "message": 1
+      },
+      "inputTokens": 591414,
+      "outputTokens": 5422,
+      "totalTokens": 1160164,
+      "costUsd": 1.2094649000000006,
+      "summary": "讀取檔案×17、執行指令×13、修改檔案×1、發送訊息×1",
+      "summaryCounts": {
+        "讀取檔案": 17,
+        "修改檔案": 1,
+        "執行指令": 13,
+        "發送訊息": 1
       }
     },
     {
@@ -139,129 +160,108 @@
         "排程/提醒": 1,
         "系統/設定": 3
       }
-    },
-    {
-      "date": "2026-02-14",
-      "userMessages": 50,
-      "assistantMessages": 102,
-      "toolCalls": 62,
-      "toolUsage": {
-        "read": 51,
-        "exec": 10,
-        "write": 1
-      },
-      "inputTokens": 244745,
-      "outputTokens": 8465,
-      "totalTokens": 1468314,
-      "costUsd": 0.75945695,
-      "summary": "讀取檔案×51、執行指令×10、修改檔案×1",
-      "summaryCounts": {
-        "讀取檔案": 51,
-        "修改檔案": 1,
-        "執行指令": 10
-      }
     }
   ],
   "recentActions": [
     {
-      "time": "2026/02/20 00:00",
+      "time": "2026/02/21 00:00",
       "tool": "exec",
       "summary": "exec: node build-data.mjs"
     },
     {
-      "time": "2026/02/20 00:00",
+      "time": "2026/02/21 00:00",
       "tool": "edit",
       "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/20 00:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
+      "time": "2026/02/21 00:00",
+      "tool": "exec",
+      "summary": "exec: cat /Users/macos-utm/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/20 00:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/SOUL.md"
-    },
-    {
-      "time": "2026/02/20 00:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/USER.md"
-    },
-    {
-      "time": "2026/02/20 00:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/MEMORY.md"
-    },
-    {
-      "time": "2026/02/20 00:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/memory/2026-02-20.md"
-    },
-    {
-      "time": "2026/02/20 00:00",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/memory/2026-02-19.md"
-    },
-    {
-      "time": "2026/02/20 00:00",
+      "time": "2026/02/21 00:00",
       "tool": "exec",
       "summary": "exec: ls"
     },
     {
-      "time": "2026/02/19 23:01",
+      "time": "2026/02/21 00:00",
+      "tool": "exec",
+      "summary": "exec: ls"
+    },
+    {
+      "time": "2026/02/20 19:45",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/19 22:31",
+      "time": "2026/02/20 12:45",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/19 21:31",
+      "time": "2026/02/20 06:00",
+      "tool": "message",
+      "summary": "message: send → Cleo"
+    },
+    {
+      "time": "2026/02/20 06:00",
+      "tool": "exec",
+      "summary": "exec: git push"
+    },
+    {
+      "time": "2026/02/20 06:00",
+      "tool": "exec",
+      "summary": "exec: git commit -m \"Update daily work for 2026-02-20\""
+    },
+    {
+      "time": "2026/02/20 06:00",
+      "tool": "exec",
+      "summary": "exec: git add data/star-jar.json data/surprise.json data/works.json works/2026-02-20.…"
+    },
+    {
+      "time": "2026/02/20 06:00",
+      "tool": "exec",
+      "summary": "exec: node generate-daily-work.mjs --date 2026-02-20 --title \"晨霧的小約定\" --content \"今天把步…"
+    },
+    {
+      "time": "2026/02/20 06:00",
+      "tool": "exec",
+      "summary": "exec: node /Users/macos-utm/.openclaw/workspace/openclaw-dashboard/generate-daily-wor…"
+    },
+    {
+      "time": "2026/02/20 06:00",
+      "tool": "exec",
+      "summary": "exec: node - <<'NODE' const fs = require('fs'); const path = require('path'); const r…"
+    },
+    {
+      "time": "2026/02/20 06:00",
+      "tool": "exec",
+      "summary": "exec: node - <<'NODE' const fs = require('fs'); const path = require('path'); const t…"
+    },
+    {
+      "time": "2026/02/20 06:00",
+      "tool": "exec",
+      "summary": "exec: python - <<'PY' import json,datetime,os from pathlib import Path today=datetime…"
+    },
+    {
+      "time": "2026/02/20 06:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/star-jar.json"
+    },
+    {
+      "time": "2026/02/20 06:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/surprise.json"
+    },
+    {
+      "time": "2026/02/20 06:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/works.json"
+    },
+    {
+      "time": "2026/02/20 05:01",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/19 21:01",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/19 20:31",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/19 20:01",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/19 19:01",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/19 18:31",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/19 18:01",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
-    },
-    {
-      "time": "2026/02/19 17:01",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/SOUL.md"
-    },
-    {
-      "time": "2026/02/19 17:01",
-      "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/USER.md"
     }
   ],
   "todaySurprise": []
