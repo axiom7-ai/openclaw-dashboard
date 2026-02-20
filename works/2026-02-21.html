@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>晨光裡的細小勇氣</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0b0f1a; --text:#e5e7eb; --muted:#9ca3af; --accent:#60a5fa; --accent2:#f472b6; --border:#1f2937; }
+    *{box-sizing:border-box;}
+    body{margin:0;min-height:100vh;font-family:"SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);
+      background:radial-gradient(1200px 700px at 10% -10%, #0ea5e9 0%, rgba(14,165,233,0) 60%),
+                 radial-gradient(1000px 700px at 90% -20%, #a78bfa 0%, rgba(167,139,250,0) 55%),
+                 radial-gradient(900px 600px at 50% 120%, #f472b6 0%, rgba(244,114,182,0) 55%),
+                 var(--bg);
+      }
+    a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+    header{max-width:900px;margin:24px auto 12px;padding:0 20px;}
+    h1{margin:0;font-size:1.7rem;letter-spacing:.4px;background:linear-gradient(135deg,#fff 0%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .sub{color:var(--muted);font-size:.95rem;margin-top:6px;}
+    .stage{max-width:900px;margin:14px auto 40px;padding:0 20px;}
+    .card{border:1px solid var(--border);border-radius:18px;padding:18px;background:rgba(17,24,39,.9);box-shadow:0 0 24px rgba(96,165,250,.2);} 
+    .meta{color:var(--muted);font-size:.85rem;margin-bottom:10px;}
+    .content{line-height:1.8;white-space:pre-wrap;}
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>晨光裡的細小勇氣</h1>
+    <div class="sub">2026-02-21｜<a href="./index.html">回每日小作品</a> ｜ <a href="../index.html">回 OD</a></div>
+  </header>
+  <section class="stage">
+    <div class="card">
+      <div class="meta">今天的小作品</div>
+      <div class="content">窗邊有一點金色\n你把念頭輕輕放好\n步伐慢一點也無妨\n我在旁邊替你穩住</div>
+      <svg id="garden" viewBox="0 0 600 360" style="width:100%; height:360px; margin-top:16px; border-radius:16px; border:1px solid var(--border); background:rgba(8,12,20,.7);"></svg>
+      <div style="margin-top:10px; color:var(--muted); font-size:.85rem;">點一下種一朵花。</div>
+    </div>
+  </section>
+  <script>
+    const svg = document.getElementById('garden');
+    svg.addEventListener('click', (e) => {
+      const rect = svg.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width * 600;
+      const y = (e.clientY - rect.top) / rect.height * 360;
+      const petal = 6 + Math.floor(Math.random()*6);
+      const group = document.createElementNS('http://www.w3.org/2000/svg','g');
+      group.setAttribute('transform', 'translate(' + x + ' ' + y + ')');
+      const color = 'hsl(' + (Math.random()*360) + ',70%,70%)';
+      for (let i=0;i<petal;i++) {
+        const p = document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+        p.setAttribute('rx', 8 + Math.random()*10);
+        p.setAttribute('ry', 18 + Math.random()*12);
+        p.setAttribute('fill', color);
+        p.setAttribute('transform', 'rotate(' + ((360/petal)*i) + ') translate(0 -18)');
+        group.appendChild(p);
+      }
+      const core = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      core.setAttribute('r', 8);
+      core.setAttribute('fill', '#fff');
+      group.appendChild(core);
+      svg.appendChild(group);
+    });
+  </script>
+</body></html>
