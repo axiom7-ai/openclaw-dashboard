@@ -1,24 +1,52 @@
 {
   "timezone": "Asia/Shanghai",
-  "generatedAt": "2026-02-20T16:00:22.228Z",
+  "generatedAt": "2026-02-21T16:00:18.352Z",
   "rows": [
     {
-      "date": "2026-02-21",
+      "date": "2026-02-22",
       "userMessages": 1,
-      "assistantMessages": 5,
-      "toolCalls": 5,
+      "assistantMessages": 3,
+      "toolCalls": 3,
       "toolUsage": {
-        "exec": 4,
-        "edit": 1
+        "read": 1,
+        "edit": 1,
+        "exec": 1
       },
-      "inputTokens": 9209,
-      "outputTokens": 508,
-      "totalTokens": 62965,
-      "costUsd": 0.032546149999999996,
-      "summary": "執行指令×4、修改檔案×1",
+      "inputTokens": 10385,
+      "outputTokens": 489,
+      "totalTokens": 37754,
+      "costUsd": 0.02972375,
+      "summary": "讀取檔案×1、修改檔案×1、執行指令×1",
       "summaryCounts": {
+        "讀取檔案": 1,
         "修改檔案": 1,
-        "執行指令": 4
+        "執行指令": 1
+      }
+    },
+    {
+      "date": "2026-02-21",
+      "userMessages": 56,
+      "assistantMessages": 131,
+      "toolCalls": 79,
+      "toolUsage": {
+        "read": 45,
+        "exec": 24,
+        "edit": 2,
+        "session_status": 1,
+        "process": 3,
+        "web_search": 4
+      },
+      "inputTokens": 702482,
+      "outputTokens": 7007,
+      "totalTokens": 2027121,
+      "costUsd": 1.5580270999999997,
+      "summary": "讀取檔案×45、執行指令×27、查詢網頁×4、修改檔案×2、系統/設定×1",
+      "summaryCounts": {
+        "讀取檔案": 45,
+        "修改檔案": 2,
+        "執行指令": 27,
+        "查詢網頁": 4,
+        "系統/設定": 1
       }
     },
     {
@@ -133,133 +161,106 @@
         "執行指令": 27,
         "查詢網頁": 6
       }
-    },
-    {
-      "date": "2026-02-15",
-      "userMessages": 55,
-      "assistantMessages": 108,
-      "toolCalls": 58,
-      "toolUsage": {
-        "web_fetch": 1,
-        "exec": 30,
-        "edit": 1,
-        "cron": 1,
-        "read": 22,
-        "gateway": 3
-      },
-      "inputTokens": 1576778,
-      "outputTokens": 13529,
-      "totalTokens": 4997155,
-      "costUsd": 3.544965900000001,
-      "summary": "執行指令×30、讀取檔案×22、系統/設定×3、修改檔案×1、查詢網頁×1、排程/提醒×1",
-      "summaryCounts": {
-        "讀取檔案": 22,
-        "修改檔案": 1,
-        "執行指令": 30,
-        "查詢網頁": 1,
-        "排程/提醒": 1,
-        "系統/設定": 3
-      }
     }
   ],
   "recentActions": [
     {
-      "time": "2026/02/21 00:00",
+      "time": "2026/02/22 00:00",
       "tool": "exec",
       "summary": "exec: node build-data.mjs"
     },
     {
-      "time": "2026/02/21 00:00",
+      "time": "2026/02/22 00:00",
       "tool": "edit",
       "summary": "edit: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/21 00:00",
-      "tool": "exec",
-      "summary": "exec: cat /Users/macos-utm/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
+      "time": "2026/02/22 00:00",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/tasks.json"
     },
     {
-      "time": "2026/02/21 00:00",
-      "tool": "exec",
-      "summary": "exec: ls"
-    },
-    {
-      "time": "2026/02/21 00:00",
-      "tool": "exec",
-      "summary": "exec: ls"
-    },
-    {
-      "time": "2026/02/20 19:45",
+      "time": "2026/02/21 23:45",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/20 12:45",
+      "time": "2026/02/21 23:15",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/20 06:00",
-      "tool": "message",
-      "summary": "message: send → Cleo"
-    },
-    {
-      "time": "2026/02/20 06:00",
-      "tool": "exec",
-      "summary": "exec: git push"
-    },
-    {
-      "time": "2026/02/20 06:00",
-      "tool": "exec",
-      "summary": "exec: git commit -m \"Update daily work for 2026-02-20\""
-    },
-    {
-      "time": "2026/02/20 06:00",
-      "tool": "exec",
-      "summary": "exec: git add data/star-jar.json data/surprise.json data/works.json works/2026-02-20.…"
-    },
-    {
-      "time": "2026/02/20 06:00",
-      "tool": "exec",
-      "summary": "exec: node generate-daily-work.mjs --date 2026-02-20 --title \"晨霧的小約定\" --content \"今天把步…"
-    },
-    {
-      "time": "2026/02/20 06:00",
-      "tool": "exec",
-      "summary": "exec: node /Users/macos-utm/.openclaw/workspace/openclaw-dashboard/generate-daily-wor…"
-    },
-    {
-      "time": "2026/02/20 06:00",
-      "tool": "exec",
-      "summary": "exec: node - <<'NODE' const fs = require('fs'); const path = require('path'); const r…"
-    },
-    {
-      "time": "2026/02/20 06:00",
-      "tool": "exec",
-      "summary": "exec: node - <<'NODE' const fs = require('fs'); const path = require('path'); const t…"
-    },
-    {
-      "time": "2026/02/20 06:00",
-      "tool": "exec",
-      "summary": "exec: python - <<'PY' import json,datetime,os from pathlib import Path today=datetime…"
-    },
-    {
-      "time": "2026/02/20 06:00",
+      "time": "2026/02/21 22:45",
       "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/star-jar.json"
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/20 06:00",
+      "time": "2026/02/21 21:45",
       "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/surprise.json"
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/20 06:00",
+      "time": "2026/02/21 21:15",
       "tool": "read",
-      "summary": "read: ~/.openclaw/workspace/openclaw-dashboard/data/works.json"
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     },
     {
-      "time": "2026/02/20 05:01",
+      "time": "2026/02/21 21:09",
+      "tool": "web_search",
+      "summary": "web_search: PTT MacShop Mac mini M4 二手"
+    },
+    {
+      "time": "2026/02/21 21:09",
+      "tool": "web_search",
+      "summary": "web_search: Mac mini M4 二手 價格 台灣 15000"
+    },
+    {
+      "time": "2026/02/21 21:09",
+      "tool": "web_search",
+      "summary": "web_search: Mac mini M4 二手 價格 台灣 15000"
+    },
+    {
+      "time": "2026/02/21 21:09",
+      "tool": "web_search",
+      "summary": "web_search: Mac mini M4 二手 價格 台灣 15000"
+    },
+    {
+      "time": "2026/02/21 20:45",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/21 20:15",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/21 19:45",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/21 19:15",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/21 18:45",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/21 18:15",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/21 17:45",
+      "tool": "read",
+      "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
+    },
+    {
+      "time": "2026/02/21 17:15",
       "tool": "read",
       "summary": "read: ~/.openclaw/workspace/HEARTBEAT.md"
     }
